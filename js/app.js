@@ -204,12 +204,11 @@
                     (w) => `
                 <div class="recent-item">
                     <div>
-                        <strong>${sanitize(w.routineName)}</strong><br>
-                        <span>${w.exercises.length} ejercicios</span>
+                        <strong>🏋️ ${sanitize(w.routineName)}</strong>
+                        <span>${w.exercises.length} ejercicios · ${formatDuration(w.duration)}</span>
                     </div>
                     <div style="text-align:right">
-                        <span>${formatDate(w.date)}</span><br>
-                        <span style="color:var(--accent)">${formatDuration(w.duration)}</span>
+                        <span style="color:var(--primary);font-weight:600">${formatDate(w.date)}</span>
                     </div>
                 </div>
             `
@@ -316,6 +315,23 @@
     }
 
     // ===== CATALOG =====
+    const CATEGORY_GRADIENTS = {
+        pecho: "linear-gradient(135deg, #6c5ce7, #a29bfe)",
+        espalda: "linear-gradient(135deg, #00b894, #00cec9)",
+        piernas: "linear-gradient(135deg, #e17055, #fdcb6e)",
+        hombros: "linear-gradient(135deg, #0984e3, #74b9ff)",
+        brazos: "linear-gradient(135deg, #d63031, #ff7675)",
+        core: "linear-gradient(135deg, #6c5ce7, #00cec9)",
+        cardio: "linear-gradient(135deg, #fd79a8, #e84393)",
+    };
+
+    function getExerciseThumb(ex) {
+        if (ex.videoId) {
+            return `https://img.youtube.com/vi/${ex.videoId}/mqdefault.jpg`;
+        }
+        return "";
+    }
+
     function renderCatalog(filter = "all", search = "") {
         const grid = $("#exercise-grid");
         let exercises = EXERCISES_DB;
@@ -342,23 +358,31 @@
 
         grid.innerHTML = exercises
             .map(
-                (ex) => `
+                (ex) => {
+                    const thumb = getExerciseThumb(ex);
+                    const gradient = CATEGORY_GRADIENTS[ex.category] || CATEGORY_GRADIENTS.core;
+                    return `
             <div class="exercise-card" data-exercise-id="${ex.id}">
-                <div class="exercise-card-media">
-                    <img src="${ex.image}" alt="${sanitize(ex.name)}" loading="lazy"
-                         onerror="this.parentElement.innerHTML='<span style=\\'font-size:60px\\'>${ex.emoji}</span>'">
+                <div class="exercise-card-media" style="background:${gradient}">
+                    ${thumb
+                        ? `<img src="${thumb}" alt="${sanitize(ex.name)}" loading="lazy"
+                               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                           <div class="card-emoji-fallback" style="display:none"><span>${ex.emoji}</span></div>`
+                        : `<div class="card-emoji-fallback"><span>${ex.emoji}</span></div>`
+                    }
+                    <div class="card-category-badge">${capitalize(ex.category)}</div>
                 </div>
                 <div class="exercise-card-body">
-                    <h3>${sanitize(ex.name)}</h3>
+                    <h3>${ex.emoji} ${sanitize(ex.name)}</h3>
                     <p>${sanitize(ex.description)}</p>
                     <div class="exercise-tags">
-                        <span class="tag">${capitalize(ex.category)}</span>
                         <span class="tag difficulty-${ex.difficulty}">${capitalize(ex.difficulty)}</span>
                         <span class="tag">${sanitize(ex.equipment)}</span>
                     </div>
                 </div>
             </div>
-        `
+        `;
+                }
             )
             .join("");
 
