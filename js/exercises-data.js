@@ -269,7 +269,7 @@ const EXERCISES_DB = [
         equipment: "Barra o mancuernas",
         emoji: "🍑",
         image: "https://images.unsplash.com/photo-1526401485004-46910ecc8e51?w=600&h=400&fit=crop",
-        videoId: "JCXUYQp2BnI",
+        videoId: "_oyxCn2iSjU",
         description: "Enfocado en isquiotibiales y glúteos, excelente para la cadena posterior.",
         muscles: ["Isquiotibiales", "Glúteos", "Erectores espinales"],
         instructions: [
@@ -389,7 +389,7 @@ const EXERCISES_DB = [
         equipment: "Barra (recta o Z)",
         emoji: "💪",
         image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&h=400&fit=crop",
-        videoId: "kwG2ipFRgFo",
+        videoId: "LY1V6UbRHFM",
         description: "Ejercicio clásico para bíceps que permite mover buen peso.",
         muscles: ["Bíceps braquial", "Braquial", "Braquiorradial"],
         instructions: [
@@ -636,6 +636,427 @@ const EXERCISES_DB = [
         tips: [
             "No dejes que las caderas suban demasiado.",
             "Comienza a un ritmo moderado y acelera gradualmente."
+        ]
+    },
+
+    // ==================== NUEVOS - PECHO ====================
+    {
+        id: "cable-crossover",
+        name: "Cruce de Cables",
+        category: "pecho",
+        difficulty: "intermedio",
+        equipment: "Máquina de poleas",
+        emoji: "🔗",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=400&fit=crop",
+        videoId: "taI4XduLpTk",
+        description: "Ejercicio de aislamiento para el pecho que permite una contracción máxima usando cables.",
+        muscles: ["Pectoral mayor", "Deltoides anterior", "Serrato anterior"],
+        instructions: [
+            "Colócate en el centro de la máquina de poleas con un pie adelante.",
+            "Agarra las manijas con los brazos extendidos y ligeramente flexionados.",
+            "Junta las manos frente al pecho en un movimiento de arco.",
+            "Mantén una ligera flexión en los codos durante todo el movimiento.",
+            "Regresa lentamente a la posición inicial."
+        ],
+        tips: [
+            "Concéntrate en sentir la contracción del pecho al juntar las manos.",
+            "No uses demasiado peso para mantener el control.",
+            "Varía la altura de las poleas para trabajar diferentes áreas del pecho."
+        ]
+    },
+    {
+        id: "cable-fly",
+        name: "Aperturas en Polea Alta",
+        category: "pecho",
+        difficulty: "principiante",
+        equipment: "Máquina de poleas",
+        emoji: "🦋",
+        image: "https://images.unsplash.com/photo-1534368786749-b63e05c92717?w=600&h=400&fit=crop",
+        videoId: "Iwe6AmxVf7o",
+        description: "Variación de apertura con cables que mantiene tensión constante en el pecho.",
+        muscles: ["Pectoral mayor", "Deltoides anterior"],
+        instructions: [
+            "Ajusta las poleas a una posición alta.",
+            "Da un paso adelante para crear tensión en los cables.",
+            "Con los brazos ligeramente flexionados, junta las manos hacia abajo y al frente.",
+            "Aprieta el pecho en la parte baja del movimiento.",
+            "Regresa de forma controlada a la posición inicial."
+        ],
+        tips: [
+            "Mantén los codos ligeramente doblados en todo momento.",
+            "Controla el movimiento, no dejes que los cables te jalen."
+        ]
+    },
+
+    // ==================== NUEVOS - ESPALDA ====================
+    {
+        id: "seated-cable-row",
+        name: "Remo en Polea Sentado",
+        category: "espalda",
+        difficulty: "principiante",
+        equipment: "Máquina de poleas",
+        emoji: "🚣",
+        image: "https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=600&h=400&fit=crop",
+        videoId: "UCXxvVItLoM",
+        description: "Ejercicio fundamental para desarrollar grosor en la espalda media.",
+        muscles: ["Dorsal ancho", "Romboides", "Trapecio medio", "Bíceps"],
+        instructions: [
+            "Siéntate con los pies en la plataforma y las rodillas ligeramente flexionadas.",
+            "Agarra la manija con ambas manos, brazos extendidos.",
+            "Tira de la manija hacia el abdomen retrayendo los omóplatos.",
+            "Mantén la espalda recta durante todo el movimiento.",
+            "Regresa lentamente a la posición inicial."
+        ],
+        tips: [
+            "No te inclines demasiado hacia atrás al tirar.",
+            "Aprieta los omóplatos al final del movimiento.",
+            "Mantén el torso estable."
+        ]
+    },
+    {
+        id: "dumbbell-row",
+        name: "Remo con Mancuerna a Un Brazo",
+        category: "espalda",
+        difficulty: "principiante",
+        equipment: "Mancuerna y banco",
+        emoji: "💪",
+        image: "https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=600&h=400&fit=crop",
+        videoId: "pYcpY20QaE8",
+        description: "Ejercicio unilateral excelente para corregir desbalances musculares en la espalda.",
+        muscles: ["Dorsal ancho", "Romboides", "Trapecio", "Bíceps"],
+        instructions: [
+            "Coloca una rodilla y una mano en el banco para apoyo.",
+            "Con la otra mano, agarra la mancuerna con el brazo extendido.",
+            "Tira de la mancuerna hacia la cadera retrayendo el omóplato.",
+            "Baja la mancuerna de forma controlada.",
+            "Completa todas las repeticiones y cambia de lado."
+        ],
+        tips: [
+            "Mantén la espalda paralela al suelo.",
+            "No rotes el torso al subir la mancuerna.",
+            "Piensa en tirar con el codo, no con la mano."
+        ]
+    },
+
+    // ==================== NUEVOS - PIERNAS ====================
+    {
+        id: "leg-extension",
+        name: "Extensión de Piernas",
+        category: "piernas",
+        difficulty: "principiante",
+        equipment: "Máquina de extensión",
+        emoji: "🦵",
+        image: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&h=400&fit=crop",
+        videoId: "YyvSfVjQeL0",
+        description: "Ejercicio de aislamiento ideal para desarrollar la definición del cuádriceps.",
+        muscles: ["Cuádriceps"],
+        instructions: [
+            "Siéntate en la máquina con la espalda apoyada en el respaldo.",
+            "Coloca los tobillos detrás del rodillo acolchado.",
+            "Extiende las piernas hasta que estén casi completamente rectas.",
+            "Mantén la contracción un segundo en la parte superior.",
+            "Baja lentamente a la posición inicial."
+        ],
+        tips: [
+            "No bloquees las rodillas en la extensión completa.",
+            "Controla la fase excéntrica (bajada) lentamente.",
+            "Ajusta el respaldo para que las rodillas queden alineadas con el eje de la máquina."
+        ]
+    },
+    {
+        id: "leg-curl",
+        name: "Curl de Piernas Acostado",
+        category: "piernas",
+        difficulty: "principiante",
+        equipment: "Máquina de curl",
+        emoji: "🦿",
+        image: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&h=400&fit=crop",
+        videoId: "1Tq3QdYUuHs",
+        description: "Ejercicio de aislamiento para los isquiotibiales que ayuda al balance muscular de la pierna.",
+        muscles: ["Isquiotibiales", "Gemelos"],
+        instructions: [
+            "Acuéstate boca abajo en la máquina con los tobillos bajo el rodillo.",
+            "Agarra las manijas laterales para estabilidad.",
+            "Flexiona las rodillas llevando los talones hacia los glúteos.",
+            "Mantén la contracción un segundo arriba.",
+            "Baja de forma controlada a la posición inicial."
+        ],
+        tips: [
+            "No levantes las caderas del banco al flexionar.",
+            "Mantén el movimiento suave y controlado.",
+            "Aprieta los isquiotibiales en la parte superior."
+        ]
+    },
+    {
+        id: "hip-thrust",
+        name: "Hip Thrust (Empuje de Cadera)",
+        category: "piernas",
+        difficulty: "intermedio",
+        equipment: "Barra y banco",
+        emoji: "🍑",
+        image: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&h=400&fit=crop",
+        videoId: "SEdqd1n0cvg",
+        description: "El mejor ejercicio para desarrollar y fortalecer los glúteos de forma efectiva.",
+        muscles: ["Glúteo mayor", "Isquiotibiales", "Core"],
+        instructions: [
+            "Siéntate en el suelo con la espalda apoyada en un banco.",
+            "Coloca la barra sobre las caderas con un pad protector.",
+            "Empuja las caderas hacia arriba hasta que el torso quede paralelo al suelo.",
+            "Aprieta los glúteos fuertemente en la parte superior.",
+            "Baja las caderas de forma controlada."
+        ],
+        tips: [
+            "Mantén la barbilla hacia el pecho durante el movimiento.",
+            "No hiperextiendas la espalda baja en la parte superior.",
+            "Los pies deben estar a la anchura de los hombros."
+        ]
+    },
+
+    // ==================== NUEVOS - HOMBROS ====================
+    {
+        id: "dumbbell-shoulder-press",
+        name: "Press de Hombro con Mancuernas",
+        category: "hombros",
+        difficulty: "principiante",
+        equipment: "Mancuernas",
+        emoji: "🏋️",
+        image: "https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600&h=400&fit=crop",
+        videoId: "qEwKCR5JCog",
+        description: "Variación del press militar que permite mayor rango de movimiento y trabajo unilateral.",
+        muscles: ["Deltoides anterior", "Deltoides medio", "Tríceps"],
+        instructions: [
+            "Siéntate en un banco con respaldo a 90 grados.",
+            "Sube las mancuernas a la altura de los hombros con las palmas al frente.",
+            "Empuja las mancuernas hacia arriba hasta casi extender los brazos.",
+            "Baja las mancuernas de forma controlada hasta la altura de los hombros.",
+            "Mantén el core activado durante todo el movimiento."
+        ],
+        tips: [
+            "No choques las mancuernas arriba.",
+            "Mantén los codos ligeramente adelante del cuerpo.",
+            "Exhala al empujar e inhala al bajar."
+        ]
+    },
+    {
+        id: "upright-row",
+        name: "Remo al Mentón",
+        category: "hombros",
+        difficulty: "intermedio",
+        equipment: "Barra",
+        emoji: "⬆️",
+        image: "https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600&h=400&fit=crop",
+        videoId: "amCU-ziHITM",
+        description: "Ejercicio compuesto que trabaja los deltoides y trapecios de forma efectiva.",
+        muscles: ["Deltoides medio", "Trapecio", "Bíceps"],
+        instructions: [
+            "De pie, agarra la barra con agarre estrecho (manos separadas 15-20 cm).",
+            "Tira de la barra hacia arriba siguiendo el cuerpo.",
+            "Lleva los codos hacia arriba y afuera hasta la altura de los hombros.",
+            "Mantén la barra cerca del cuerpo durante todo el recorrido.",
+            "Baja de forma controlada a la posición inicial."
+        ],
+        tips: [
+            "No subas la barra más allá de la altura de los hombros.",
+            "Un agarre más amplio reduce el estrés en los hombros.",
+            "Si sientes molestias, cambia a la versión con mancuernas."
+        ]
+    },
+    {
+        id: "dumbbell-shrugs",
+        name: "Encogimientos con Mancuernas",
+        category: "hombros",
+        difficulty: "principiante",
+        equipment: "Mancuernas",
+        emoji: "🤷",
+        image: "https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600&h=400&fit=crop",
+        videoId: "cJRVVxmytaM",
+        description: "Ejercicio aislado para desarrollar la parte superior del trapecio.",
+        muscles: ["Trapecio superior", "Elevador de la escápula"],
+        instructions: [
+            "De pie, sostén una mancuerna en cada mano a los lados.",
+            "Encoge los hombros hacia las orejas lo más alto posible.",
+            "Mantén la contracción máxima durante 1-2 segundos.",
+            "Baja los hombros de forma controlada.",
+            "Mantén los brazos rectos durante todo el ejercicio."
+        ],
+        tips: [
+            "No rotes los hombros, el movimiento es solo hacia arriba y abajo.",
+            "Usa un agarre firme con straps si es necesario.",
+            "No uses impulso del cuerpo para subir el peso."
+        ]
+    },
+
+    // ==================== NUEVOS - BRAZOS ====================
+    {
+        id: "concentration-curl",
+        name: "Curl Concentrado",
+        category: "brazos",
+        difficulty: "principiante",
+        equipment: "Mancuerna",
+        emoji: "💪",
+        image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&h=400&fit=crop",
+        videoId: "0AUGkch3tzc",
+        description: "Ejercicio de aislamiento perfecto para el pico del bíceps con máxima concentración.",
+        muscles: ["Bíceps braquial", "Braquial"],
+        instructions: [
+            "Siéntate en un banco con las piernas abiertas.",
+            "Apoya el codo en la parte interna del muslo.",
+            "Con la mancuerna, realiza un curl flexionando el codo.",
+            "Aprieta el bíceps en la parte superior del movimiento.",
+            "Baja lentamente la mancuerna a la posición inicial."
+        ],
+        tips: [
+            "No muevas el codo de su posición en el muslo.",
+            "Concéntrate en la contracción muscular.",
+            "Usa un peso que permita un rango completo de movimiento."
+        ]
+    },
+    {
+        id: "preacher-curl",
+        name: "Curl en Banco Scott",
+        category: "brazos",
+        difficulty: "intermedio",
+        equipment: "Barra EZ y banco Scott",
+        emoji: "📐",
+        image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&h=400&fit=crop",
+        videoId: "fIWP-FRFNU0",
+        description: "Curl con soporte que elimina el impulso y maximiza la activación del bíceps.",
+        muscles: ["Bíceps braquial", "Braquial anterior"],
+        instructions: [
+            "Siéntate en el banco Scott con los brazos apoyados en el pad.",
+            "Agarra la barra EZ con agarre supino.",
+            "Sube la barra flexionando los codos de forma controlada.",
+            "Aprieta los bíceps en la parte superior.",
+            "Baja la barra lentamente sin extender completamente los codos."
+        ],
+        tips: [
+            "No dejes que los brazos cuelguen completamente al bajar.",
+            "Mantén los hombros pegados al pad.",
+            "Usa la barra EZ para reducir el estrés en las muñecas."
+        ]
+    },
+    {
+        id: "tricep-dips",
+        name: "Fondos para Tríceps",
+        category: "brazos",
+        difficulty: "intermedio",
+        equipment: "Barras paralelas",
+        emoji: "⬇️",
+        image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&h=400&fit=crop",
+        videoId: "6kALZikXxLc",
+        description: "Ejercicio compuesto con peso corporal que desarrolla tríceps, pecho y hombros.",
+        muscles: ["Tríceps", "Pectoral inferior", "Deltoides anterior"],
+        instructions: [
+            "Agarra las barras paralelas y elévate con los brazos extendidos.",
+            "Inclina ligeramente el torso hacia adelante.",
+            "Baja el cuerpo flexionando los codos hasta un ángulo de 90 grados.",
+            "Empuja hacia arriba hasta extender completamente los brazos.",
+            "Mantén el core activado durante todo el movimiento."
+        ],
+        tips: [
+            "Para más tríceps, mantén el torso vertical.",
+            "Para más pecho, inclínate hacia adelante.",
+            "Si es muy difícil, usa una banda de asistencia."
+        ]
+    },
+    {
+        id: "overhead-tricep-ext",
+        name: "Extensión de Tríceps sobre Cabeza",
+        category: "brazos",
+        difficulty: "principiante",
+        equipment: "Mancuerna",
+        emoji: "🔝",
+        image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&h=400&fit=crop",
+        videoId: "nRiJVZDpdL0",
+        description: "Ejercicio de aislamiento que trabaja la cabeza larga del tríceps de forma efectiva.",
+        muscles: ["Tríceps (cabeza larga)", "Tríceps (cabeza medial)"],
+        instructions: [
+            "De pie o sentado, sostén una mancuerna con ambas manos sobre la cabeza.",
+            "Baja la mancuerna detrás de la cabeza flexionando los codos.",
+            "Mantén los codos cerca de la cabeza apuntando hacia arriba.",
+            "Extiende los codos para volver a la posición inicial.",
+            "Controla el movimiento en ambas direcciones."
+        ],
+        tips: [
+            "Mantén los codos fijos, solo los antebrazos se mueven.",
+            "No arquees la espalda baja.",
+            "Puedes hacerlo sentado para mayor estabilidad."
+        ]
+    },
+
+    // ==================== NUEVOS - CORE ====================
+    {
+        id: "bicycle-crunch",
+        name: "Abdominales Bicicleta",
+        category: "core",
+        difficulty: "principiante",
+        equipment: "Peso corporal",
+        emoji: "🚴",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
+        videoId: "9FGilxCbdz8",
+        description: "Ejercicio dinámico que trabaja tanto los oblicuos como el recto abdominal simultáneamente.",
+        muscles: ["Oblicuos", "Recto abdominal", "Flexores de cadera"],
+        instructions: [
+            "Acuéstate boca arriba con las manos detrás de la cabeza.",
+            "Eleva las piernas con las rodillas a 90 grados.",
+            "Lleva el codo derecho hacia la rodilla izquierda girando el torso.",
+            "Alterna al otro lado de forma fluida.",
+            "Mantén la espalda baja pegada al suelo."
+        ],
+        tips: [
+            "No tires del cuello con las manos.",
+            "El movimiento viene de la rotación del torso, no de los brazos.",
+            "Extiende completamente la pierna contraria en cada repetición."
+        ]
+    },
+    {
+        id: "ab-circuit",
+        name: "Circuito de Abdominales",
+        category: "core",
+        difficulty: "avanzado",
+        equipment: "Peso corporal",
+        emoji: "🔥",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
+        videoId: "3p8EBPVZ2Iw",
+        description: "Rutina intensa de abdominales que combina múltiples movimientos para un core fuerte.",
+        muscles: ["Recto abdominal", "Oblicuos", "Transverso del abdomen", "Flexores de cadera"],
+        instructions: [
+            "Realiza cada ejercicio del circuito por 30-45 segundos.",
+            "Incluye crunches, leg raises, plancha y mountain climbers.",
+            "Descansa 10-15 segundos entre ejercicios.",
+            "Completa 2-3 rondas del circuito completo.",
+            "Mantén el core activado en todos los movimientos."
+        ],
+        tips: [
+            "Prioriza la forma correcta sobre la velocidad.",
+            "Respira de forma constante, no contengas el aire.",
+            "Escala la dificultad según tu nivel."
+        ]
+    },
+
+    // ==================== NUEVOS - CARDIO ====================
+    {
+        id: "jump-rope",
+        name: "Saltar la Cuerda",
+        category: "cardio",
+        difficulty: "principiante",
+        equipment: "Cuerda para saltar",
+        emoji: "⏫",
+        image: "https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?w=600&h=400&fit=crop",
+        videoId: "FJmRQ5iTXKE",
+        description: "Ejercicio cardiovascular clásico que mejora la coordinación, resistencia y quema calorías rápidamente.",
+        muscles: ["Gemelos", "Cuádriceps", "Core", "Sistema cardiovascular"],
+        instructions: [
+            "Sostén la cuerda con las manos a la altura de las caderas.",
+            "Gira la cuerda con las muñecas, no con los brazos.",
+            "Salta con ambos pies apenas lo suficiente para pasar la cuerda.",
+            "Aterriza suavemente sobre las puntas de los pies.",
+            "Mantén un ritmo constante y respira de forma regular."
+        ],
+        tips: [
+            "Empieza con intervalos cortos de 30 segundos.",
+            "Mantén los codos cerca del cuerpo.",
+            "Usa una superficie con algo de amortiguación para proteger las articulaciones."
         ]
     }
 ];
