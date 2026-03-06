@@ -2,24 +2,63 @@
 (function () {
     "use strict";
 
+    // ===== AUTH SYSTEM =====
+    function getUsers() {
+        return JSON.parse(localStorage.getItem("gym_users") || "{}");
+    }
+
+    function saveUsers(users) {
+        localStorage.setItem("gym_users", JSON.stringify(users));
+    }
+
+    async function hashPassword(password) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(password + "gymtracker_salt_2024");
+        const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+    }
+
+    function getCurrentUser() {
+        return sessionStorage.getItem("gym_current_user");
+    }
+
+    function setCurrentUser(username) {
+        sessionStorage.setItem("gym_current_user", username);
+    }
+
+    function clearCurrentUser() {
+        sessionStorage.removeItem("gym_current_user");
+    }
+
+    // Storage keys namespaced per user
+    function userKey(key) {
+        const user = getCurrentUser();
+        return user ? `gym_${user}_${key}` : `gym_${key}`;
+    }
+
     // ===== STATE =====
-    const STATE = {
-        currentPage: "dashboard",
-        routines: JSON.parse(localStorage.getItem("gym_routines") || "[]"),
-        workoutLog: JSON.parse(localStorage.getItem("gym_workout_log") || "[]"),
-        weightLog: JSON.parse(localStorage.getItem("gym_weight_log") || "[]"),
-        theme: localStorage.getItem("gym_theme") || "light",
-        editingRoutineId: null,
-        activeWorkout: null,
-        workoutTimerInterval: null,
-    };
+    let STATE = {};
+
+    function loadUserState() {
+        STATE = {
+            currentPage: "dashboard",
+            routines: JSON.parse(localStorage.getItem(userKey("routines")) || "[]"),
+            workoutLog: JSON.parse(localStorage.getItem(userKey("workout_log")) || "[]"),
+            weightLog: JSON.parse(localStorage.getItem(userKey("weight_log")) || "[]"),
+            theme: localStorage.getItem(userKey("theme")) || "light",
+            editingRoutineId: null,
+            activeWorkout: null,
+            workoutTimerInterval: null,
+        };
+    }
 
     // ===== HELPERS =====
     function saveState() {
-        localStorage.setItem("gym_routines", JSON.stringify(STATE.routines));
-        localStorage.setItem("gym_workout_log", JSON.stringify(STATE.workoutLog));
-        localStorage.setItem("gym_weight_log", JSON.stringify(STATE.weightLog));
-        localStorage.setItem("gym_theme", STATE.theme);
+        localStorage.setItem(userKey("routines"), JSON.stringify(STATE.routines));
+        localStorage.setItem(userKey("workout_log"), JSON.stringify(STATE.workoutLog));
+        localStorage.setItem(userKey("weight_log"), JSON.stringify(STATE.weightLog));
+        localStorage.setItem(userKey("theme"), STATE.theme);
     }
 
     function $(selector) {
@@ -1279,8 +1318,156 @@
         });
     }
 
-    // ===== INIT =====
-    function init() {
+    // ===== AUTH UI =====
+    function initAuth() {
+        const authScreen = $("#auth-screen");
+        const appContainer = $("#app-container");
+        const loginForm = $("#login-form");
+        const registerForm = $("#register-form");
+
+        // Toggle password visibility
+        $$(".btn-toggle-pass").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const input = $(`#${btn.dataset.target}`);
+                if (input.type === "password") {
+                    input.type = "text";
+                    btn.textContent = "🙈";
+                } else {
+                    input.type = "password";
+                    btn.textContent = "👁️";
+                }
+            });
+        });
+
+        // Switch forms
+        $("#show-register").addEventListener("click", (e) => {
+            e.preventDefault();
+            loginForm.style.display = "none";
+            registerForm.style.display = "block";
+            $("#register-error").textContent = "";
+        });
+
+        $("#show-login").addEventListener("click", (e) => {
+            e.preventDefault();
+            registerForm.style.display = "none";
+            loginForm.style.display = "block";
+            $("#login-error").textContent = "";
+        });
+
+        // Login
+        loginForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const username = $("#login-username").value.trim().toLowerCase();
+            const password = $("#login-password").value;
+            const errorEl = $("#login-error");
+
+            if (!username || !password) {
+                errorEl.textContent = "Completa todos los campos.";
+                return;
+            }
+
+            const users = getUsers();
+            if (!users[username]) {
+                errorEl.textContent = "Usuario no encontrado.";
+                return;
+            }
+
+            const hashed = await hashPassword(password);
+            if (users[username].password !== hashed) {
+                errorEl.textContent = "Contraseña incorrecta.";
+                return;
+            }
+
+            errorEl.textContent = "";
+            setCurrentUser(username);
+            enterApp(users[username]);
+        });
+
+        // Register
+        registerForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const name = $("#reg-name").value.trim();
+            const username = $("#reg-username").value.trim().toLowerCase();
+            const password = $("#reg-password").value;
+            const password2 = $("#reg-password2").value;
+            const errorEl = $("#register-error");
+
+            if (!name || !username || !password || !password2) {
+                errorEl.textContent = "Completa todos los campos.";
+                return;
+            }
+
+            if (!/^[a-zA-Z0-9_]{3,20}$/.test(username)) {
+                errorEl.textContent = "El usuario solo puede tener letras, números y _ (3-20 caracteres).";
+                return;
+            }
+
+            if (password.length < 4) {
+                errorEl.textContent = "La contraseña debe tener al menos 4 caracteres.";
+                return;
+            }
+
+            if (password !== password2) {
+                errorEl.textContent = "Las contraseñas no coinciden.";
+                return;
+            }
+
+            const users = getUsers();
+            if (users[username]) {
+                errorEl.textContent = "Ese nombre de usuario ya existe.";
+                return;
+            }
+
+            const hashed = await hashPassword(password);
+            users[username] = {
+                name: name,
+                username: username,
+                password: hashed,
+                createdAt: new Date().toISOString(),
+            };
+            saveUsers(users);
+
+            errorEl.textContent = "";
+            setCurrentUser(username);
+            enterApp(users[username]);
+        });
+
+        // Logout
+        $("#btn-logout").addEventListener("click", () => {
+            if (confirm("¿Cerrar sesión?")) {
+                exitApp();
+            }
+        });
+
+        // Check if already logged in
+        const currentUser = getCurrentUser();
+        if (currentUser) {
+            const users = getUsers();
+            if (users[currentUser]) {
+                enterApp(users[currentUser]);
+                return;
+            }
+            clearCurrentUser();
+        }
+    }
+
+    function enterApp(userInfo) {
+        $("#auth-screen").style.display = "none";
+        $("#app-container").style.display = "flex";
+
+        // Update sidebar user info
+        const initials = userInfo.name
+            .split(" ")
+            .map((w) => w[0])
+            .join("")
+            .toUpperCase()
+            .slice(0, 2);
+        $("#user-avatar").textContent = initials;
+        $("#user-display-name").textContent = userInfo.name;
+        $("#user-handle").textContent = "@" + userInfo.username;
+
+        // Load user data and start app
+        loadUserState();
         initTheme();
         initNavigation();
         initModals();
@@ -1289,10 +1476,30 @@
         initLogFilters();
         initWeightForm();
 
-        // Initial renders
         renderDashboard();
         renderCatalog();
         renderRoutines();
+    }
+
+    function exitApp() {
+        if (STATE.workoutTimerInterval) {
+            clearInterval(STATE.workoutTimerInterval);
+        }
+        clearCurrentUser();
+        $("#app-container").style.display = "none";
+        $("#auth-screen").style.display = "flex";
+        // Reset forms
+        $("#login-form").reset();
+        $("#register-form").reset();
+        $("#login-form").style.display = "block";
+        $("#register-form").style.display = "none";
+        $("#login-error").textContent = "";
+        $("#register-error").textContent = "";
+    }
+
+    // ===== INIT =====
+    function init() {
+        initAuth();
     }
 
     // Start app
