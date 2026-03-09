@@ -39,6 +39,9 @@
 
     // ===== STATE =====
     let STATE = {};
+    let appInitialized = false;
+    let restTimerInterval = null;
+    let restSeconds = 90;
 
     function loadUserState() {
         STATE = {
@@ -174,13 +177,13 @@
     let dashboardChart = null;
 
     function renderDashboard() {
-        // Stats
-        $("#stat-workouts").textContent = STATE.workoutLog.length;
-        $("#stat-routines").textContent = STATE.routines.length;
+        // Stats with animated counters
+        animateValue($("#stat-workouts"), STATE.workoutLog.length);
+        animateValue($("#stat-routines"), STATE.routines.length);
 
         // Streak
         const streak = calculateStreak();
-        $("#stat-streak").textContent = streak;
+        animateValue($("#stat-streak"), streak);
 
         // Current weight
         if (STATE.weightLog.length > 0) {
@@ -399,6 +402,8 @@
     }
 
     function initCatalogFilters() {
+        updateChipCounts();
+
         $$(".filter-chips .chip").forEach((chip) => {
             chip.addEventListener("click", () => {
                 $$(".filter-chips .chip").forEach((c) =>
@@ -413,6 +418,25 @@
             const activeFilter =
                 $(".filter-chips .chip.active")?.dataset.filter || "all";
             renderCatalog(activeFilter, e.target.value);
+        });
+    }
+
+    function updateChipCounts() {
+        $$(".filter-chips .chip").forEach((chip) => {
+            const filter = chip.dataset.filter;
+            let count;
+            if (filter === "all") {
+                count = EXERCISES_DB.length;
+            } else {
+                count = EXERCISES_DB.filter((e) => e.category === filter).length;
+            }
+            let badge = chip.querySelector(".chip-count");
+            if (!badge) {
+                badge = document.createElement("span");
+                badge.className = "chip-count";
+                chip.appendChild(badge);
+            }
+            badge.textContent = count;
         });
     }
 
@@ -886,6 +910,26 @@
                 <div class="timer-value" id="workout-timer-display">00:00</div>
             </div>
             <h2>🏋️ ${sanitize(workout.routineName)}</h2>
+            <div class="rest-time-selector">
+                <label>⏱️ Descanso:</label>
+                <button class="rest-option ${restSeconds === 30 ? "active" : ""}" data-rest="30">30s</button>
+                <button class="rest-option ${restSeconds === 60 ? "active" : ""}" data-rest="60">1min</button>
+                <button class="rest-option ${restSeconds === 90 ? "active" : ""}" data-rest="90">1:30</button>
+                <button class="rest-option ${restSeconds === 120 ? "active" : ""}" data-rest="120">2min</button>
+            </div>
+            <div class="rest-timer-bar" id="rest-timer-bar">
+                <div class="rest-progress" id="rest-progress">
+                    <div class="rest-progress-inner" id="rest-progress-label">⏸️</div>
+                </div>
+                <div>
+                    <div class="rest-label">Descanso</div>
+                    <div class="rest-time" id="rest-time-display">0:00</div>
+                </div>
+                <div class="rest-actions">
+                    <button class="btn-skip" id="btn-skip-rest">Saltar</button>
+                    <button id="btn-add-30">+30s</button>
+                </div>
+            </div>
             ${workout.exercises
                 .map((we, exIdx) => {
                     const ex = EXERCISES_DB.find(
@@ -958,8 +1002,30 @@
                 btn.textContent = set.completed ? "✅" : "⬜";
                 btn.style.opacity = set.completed ? "1" : "0.6";
                 btn.style.transform = set.completed ? "scale(1.2)" : "scale(1)";
+                if (set.completed) {
+                    startRestTimer(restSeconds);
+                }
             });
         });
+
+        // Rest time selector
+        content.querySelectorAll(".rest-option").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                content.querySelectorAll(".rest-option").forEach((b) => b.classList.remove("active"));
+                btn.classList.add("active");
+                restSeconds = parseInt(btn.dataset.rest);
+            });
+        });
+
+        // Rest timer controls
+        const skipBtn = content.querySelector("#btn-skip-rest");
+        if (skipBtn) {
+            skipBtn.addEventListener("click", () => skipRestTimer());
+        }
+        const add30Btn = content.querySelector("#btn-add-30");
+        if (add30Btn) {
+            add30Btn.addEventListener("click", () => addRestTime(30));
+        }
 
         $("#btn-cancel-workout").addEventListener("click", () => {
             if (confirm("¿Cancelar el entrenamiento? Se perderá el progreso.")) {
@@ -1003,6 +1069,7 @@
         if (!workout) return;
 
         stopWorkoutTimer();
+        skipRestTimer();
 
         const duration = Math.floor(
             (Date.now() - workout.startTime) / 1000
@@ -1030,9 +1097,73 @@
         STATE.activeWorkout = null;
         saveState();
 
-        closeModal("workout-modal");
-        showToast("¡Entrenamiento completado! 💪");
+        showWorkoutSummary(logEntry, duration);
         renderDashboard();
+    }
+
+    function showWorkoutSummary(logEntry, duration) {
+        const content = $("#workout-content");
+        const totalSets = logEntry.exercises.reduce((sum, ex) => sum + ex.sets.length, 0);
+        const totalReps = logEntry.exercises.reduce((sum, ex) =>
+            sum + ex.sets.reduce((s, set) => s + (parseInt(set.reps) || 0), 0), 0);
+        const totalVolume = logEntry.exercises.reduce((sum, ex) =>
+            sum + ex.sets.reduce((s, set) => s + (parseFloat(set.weight) || 0) * (parseInt(set.reps) || 0), 0), 0);
+
+        content.innerHTML = `
+            <div class="workout-summary">
+                <div class="summary-icon">🎉</div>
+                <h2>¡Entrenamiento Completado!</h2>
+                <p class="summary-subtitle">${sanitize(logEntry.routineName)} — ${formatDate(logEntry.date)}</p>
+                <div class="summary-stats-grid">
+                    <div class="summary-stat">
+                        <span class="summary-stat-value">⏱️ ${formatDuration(duration)}</span>
+                        <span class="summary-stat-label">Duración</span>
+                    </div>
+                    <div class="summary-stat">
+                        <span class="summary-stat-value">${totalSets}</span>
+                        <span class="summary-stat-label">Series completadas</span>
+                    </div>
+                    <div class="summary-stat">
+                        <span class="summary-stat-value">${totalReps}</span>
+                        <span class="summary-stat-label">Repeticiones totales</span>
+                    </div>
+                </div>
+                ${totalVolume > 0 ? `<p style="font-size:14px;color:var(--text-light);margin-bottom:16px">Volumen total: <strong style="color:var(--primary)">${Math.round(totalVolume).toLocaleString()} kg</strong></p>` : ""}
+                <div class="summary-exercises-list">
+                    ${logEntry.exercises.filter(ex => ex.sets.length > 0).map(ex => `
+                        <div class="summary-exercise-row">
+                            <strong>${sanitize(ex.name)}</strong>
+                            <span class="sets-info">${ex.sets.length} series</span>
+                        </div>
+                    `).join("")}
+                </div>
+                <button class="btn-primary" id="btn-close-summary">Cerrar</button>
+            </div>
+        `;
+
+        content.querySelector("#btn-close-summary").addEventListener("click", () => {
+            closeModal("workout-modal");
+        });
+
+        launchConfetti();
+    }
+
+    function launchConfetti() {
+        const colors = ["#6c5ce7", "#00cec9", "#fd79a8", "#fdcb6e", "#00b894", "#e17055"];
+        for (let i = 0; i < 40; i++) {
+            const piece = document.createElement("div");
+            piece.className = "confetti-piece";
+            piece.style.left = Math.random() * 100 + "vw";
+            piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+            piece.style.animationDelay = Math.random() * 1.5 + "s";
+            piece.style.animationDuration = (2 + Math.random() * 2) + "s";
+            const size = 6 + Math.random() * 8;
+            piece.style.width = size + "px";
+            piece.style.height = size + "px";
+            piece.style.borderRadius = Math.random() > 0.5 ? "50%" : "2px";
+            document.body.appendChild(piece);
+            setTimeout(() => piece.remove(), 5000);
+        }
     }
 
     // ===== WORKOUT LOG =====
@@ -1116,6 +1247,7 @@
         renderWeightChart();
         renderWeightStats();
         renderWeightHistory();
+        calculateBMI();
     }
 
     function initWeightForm() {
@@ -1342,6 +1474,233 @@
         });
     }
 
+    // ===== REST TIMER =====
+    let restTimerRemaining = 0;
+    let restTimerTotal = 0;
+
+    function startRestTimer(seconds) {
+        skipRestTimer();
+        restTimerRemaining = seconds;
+        restTimerTotal = seconds;
+        const bar = document.getElementById("rest-timer-bar");
+        if (!bar) return;
+        bar.classList.add("active");
+        updateRestDisplay();
+
+        restTimerInterval = setInterval(() => {
+            restTimerRemaining--;
+            if (restTimerRemaining <= 0) {
+                skipRestTimer();
+                showToast("⏰ ¡Descanso terminado! Siguiente serie", "info");
+            } else {
+                updateRestDisplay();
+            }
+        }, 1000);
+    }
+
+    function updateRestDisplay() {
+        const display = document.getElementById("rest-time-display");
+        const progress = document.getElementById("rest-progress");
+        const label = document.getElementById("rest-progress-label");
+        if (!display) return;
+
+        const m = Math.floor(restTimerRemaining / 60);
+        const s = restTimerRemaining % 60;
+        display.textContent = `${m}:${s.toString().padStart(2, "0")}`;
+
+        if (progress && restTimerTotal > 0) {
+            const pct = ((restTimerTotal - restTimerRemaining) / restTimerTotal) * 100;
+            progress.style.setProperty("--progress", pct + "%");
+        }
+        if (label) {
+            label.textContent = restTimerRemaining + "s";
+        }
+    }
+
+    function skipRestTimer() {
+        if (restTimerInterval) {
+            clearInterval(restTimerInterval);
+            restTimerInterval = null;
+        }
+        restTimerRemaining = 0;
+        const bar = document.getElementById("rest-timer-bar");
+        if (bar) bar.classList.remove("active");
+    }
+
+    function addRestTime(seconds) {
+        restTimerRemaining += seconds;
+        restTimerTotal += seconds;
+        updateRestDisplay();
+    }
+
+    // ===== ANIMATED VALUE =====
+    function animateValue(el, target) {
+        if (!el) return;
+        const current = parseInt(el.textContent) || 0;
+        if (current === target) {
+            el.textContent = target;
+            return;
+        }
+        const duration = 600;
+        const start = performance.now();
+        function step(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.round(current + (target - current) * eased);
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            }
+        }
+        requestAnimationFrame(step);
+    }
+
+    // ===== BMI CALCULATOR =====
+    function initBMI() {
+        const savedHeight = localStorage.getItem(userKey("height"));
+        if (savedHeight) {
+            const heightInput = $("#height-value");
+            if (heightInput) heightInput.value = savedHeight;
+        }
+
+        const saveBtn = $("#btn-save-height");
+        if (saveBtn) {
+            saveBtn.addEventListener("click", () => {
+                const height = parseFloat($("#height-value").value);
+                if (!height || height < 100 || height > 250) {
+                    showToast("Ingresa una estatura válida (100-250 cm)", "error");
+                    return;
+                }
+                localStorage.setItem(userKey("height"), height);
+                showToast("Estatura guardada");
+                calculateBMI();
+            });
+        }
+
+        calculateBMI();
+    }
+
+    function calculateBMI() {
+        const height = parseFloat(localStorage.getItem(userKey("height")));
+        if (!height || STATE.weightLog.length === 0) {
+            const card = $("#bmi-card");
+            if (card) card.style.display = "none";
+            return;
+        }
+
+        const sorted = [...STATE.weightLog].sort(
+            (a, b) => new Date(a.date) - new Date(b.date)
+        );
+        const currentWeight = sorted[sorted.length - 1].value;
+        const heightM = height / 100;
+        const bmi = (currentWeight / (heightM * heightM)).toFixed(1);
+
+        let category, cssClass, description;
+        if (bmi < 18.5) {
+            category = "Bajo peso";
+            cssClass = "bmi-underweight";
+            description = `Tu IMC es ${bmi}. Estás por debajo del peso recomendado. Considera aumentar tu ingesta calórica.`;
+        } else if (bmi < 25) {
+            category = "Peso normal";
+            cssClass = "bmi-normal";
+            description = `Tu IMC es ${bmi}. ¡Estás en un rango saludable! Mantén tus buenos hábitos.`;
+        } else if (bmi < 30) {
+            category = "Sobrepeso";
+            cssClass = "bmi-overweight";
+            description = `Tu IMC es ${bmi}. Estás ligeramente por encima del rango saludable.`;
+        } else {
+            category = "Obesidad";
+            cssClass = "bmi-obese";
+            description = `Tu IMC es ${bmi}. Considera consultar con un profesional de salud.`;
+        }
+
+        const card = $("#bmi-card");
+        const gauge = $("#bmi-gauge");
+        const valueEl = $("#bmi-value");
+        const descEl = $("#bmi-description");
+
+        if (card) card.style.display = "flex";
+        if (gauge) {
+            gauge.className = "bmi-gauge " + cssClass;
+        }
+        if (valueEl) valueEl.textContent = bmi;
+        if (descEl) descEl.innerHTML = `<strong>${category}</strong> — ${description}`;
+    }
+
+    // ===== EXPORT / IMPORT =====
+    function initExportImport() {
+        const exportBtn = $("#btn-export");
+        if (exportBtn) {
+            exportBtn.addEventListener("click", exportUserData);
+        }
+        const importInput = $("#import-file");
+        if (importInput) {
+            importInput.addEventListener("change", importUserData);
+        }
+    }
+
+    function exportUserData() {
+        const user = getCurrentUser();
+        if (!user) return;
+
+        const data = {
+            exportDate: new Date().toISOString(),
+            username: user,
+            routines: STATE.routines,
+            workoutLog: STATE.workoutLog,
+            weightLog: STATE.weightLog,
+            height: localStorage.getItem(userKey("height")) || null,
+            theme: STATE.theme,
+        };
+
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `gymtracker_${user}_${new Date().toISOString().split("T")[0]}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast("Datos exportados correctamente");
+    }
+
+    function importUserData(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            try {
+                const data = JSON.parse(event.target.result);
+                if (!data.routines || !data.workoutLog || !data.weightLog) {
+                    showToast("Archivo no válido", "error");
+                    return;
+                }
+
+                if (!confirm("¿Importar estos datos? Se reemplazarán tus datos actuales.")) {
+                    return;
+                }
+
+                STATE.routines = data.routines;
+                STATE.workoutLog = data.workoutLog;
+                STATE.weightLog = data.weightLog;
+                if (data.height) {
+                    localStorage.setItem(userKey("height"), data.height);
+                }
+                saveState();
+                renderDashboard();
+                renderRoutines();
+                renderWeight();
+                showToast("Datos importados correctamente ✅");
+            } catch (err) {
+                showToast("Error al leer el archivo", "error");
+            }
+        };
+        reader.readAsText(file);
+        e.target.value = "";
+    }
+
     // ===== AUTH UI =====
     function initAuth() {
         const authScreen = $("#auth-screen");
@@ -1493,13 +1852,20 @@
         // Load user data and start app
         loadUserState();
         initTheme();
-        initNavigation();
-        initModals();
-        initCatalogFilters();
-        initRoutineForm();
-        initLogFilters();
-        initWeightForm();
 
+        // Only bind event listeners once to prevent duplicates on re-login
+        if (!appInitialized) {
+            initNavigation();
+            initModals();
+            initCatalogFilters();
+            initRoutineForm();
+            initLogFilters();
+            initWeightForm();
+            initExportImport();
+            appInitialized = true;
+        }
+
+        initBMI();
         renderDashboard();
         renderCatalog();
         renderRoutines();
@@ -1509,6 +1875,7 @@
         if (STATE.workoutTimerInterval) {
             clearInterval(STATE.workoutTimerInterval);
         }
+        skipRestTimer();
         clearCurrentUser();
         $("#app-container").style.display = "none";
         $("#auth-screen").style.display = "flex";

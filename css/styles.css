@@ -1102,6 +1102,12 @@ body {
     border-color: rgba(214,48,49,0.15);
 }
 
+.tag.difficulty-principiante {
+    background: rgba(0,184,148,0.1);
+    color: var(--success);
+    border-color: rgba(0,184,148,0.15);
+}
+
 /* ===== EXERCISE DETAIL (Modal) ===== */
 .exercise-detail {
     padding: 8px;
@@ -2017,4 +2023,370 @@ body {
     box-shadow: var(--shadow-hover);
     border-left-color: var(--accent);
     transform: translateY(-2px);
+}
+
+/* ===== REST TIMER ===== */
+.rest-timer-bar {
+    display: none;
+    background: linear-gradient(135deg, #2d3436, #636e72);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    animation: fadeIn 0.3s ease;
+}
+
+.rest-timer-bar.active {
+    display: flex;
+}
+
+.rest-timer-bar .rest-time {
+    font-size: 32px;
+    font-weight: 800;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+    min-width: 80px;
+}
+
+.rest-timer-bar .rest-label {
+    color: rgba(255,255,255,0.7);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.rest-timer-bar .rest-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.rest-timer-bar .rest-actions button {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-family: inherit;
+}
+
+.rest-timer-bar .rest-actions button:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.rest-timer-bar .rest-actions .btn-skip {
+    background: rgba(214,48,49,0.3);
+    border-color: rgba(214,48,49,0.4);
+}
+
+.rest-timer-bar .rest-actions .btn-skip:hover {
+    background: rgba(214,48,49,0.5);
+}
+
+.rest-progress {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: conic-gradient(var(--accent) var(--progress, 0%), rgba(255,255,255,0.1) 0%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.rest-progress-inner {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #2d3436;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--accent);
+    font-weight: 700;
+}
+
+/* ===== REST TIME SELECTOR ===== */
+.rest-time-selector {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.rest-time-selector label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-light);
+    white-space: nowrap;
+}
+
+.rest-time-selector .rest-option {
+    padding: 6px 14px;
+    border-radius: 50px;
+    border: 2px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-light);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-family: inherit;
+}
+
+.rest-time-selector .rest-option.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+}
+
+.rest-time-selector .rest-option:hover {
+    border-color: var(--primary);
+}
+
+/* ===== WORKOUT SUMMARY ===== */
+.workout-summary {
+    text-align: center;
+    padding: 24px;
+}
+
+.workout-summary .summary-icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+    animation: bounceIn 0.6s ease;
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.workout-summary h2 {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.workout-summary .summary-subtitle {
+    color: var(--text-light);
+    font-size: 15px;
+    margin-bottom: 24px;
+}
+
+.summary-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.summary-stat {
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    border: 1px solid var(--border);
+}
+
+.summary-stat .summary-stat-value {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--primary);
+    display: block;
+}
+
+.summary-stat .summary-stat-label {
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.summary-exercises-list {
+    text-align: left;
+    margin-bottom: 24px;
+}
+
+.summary-exercise-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: var(--bg);
+    border-radius: var(--radius-xs);
+    margin-bottom: 6px;
+    font-size: 14px;
+    border: 1px solid var(--border);
+}
+
+.summary-exercise-row strong {
+    flex: 1;
+}
+
+.summary-exercise-row .sets-info {
+    color: var(--text-light);
+    font-size: 13px;
+}
+
+/* ===== BMI SECTION ===== */
+.bmi-card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 22px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.bmi-gauge {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.bmi-gauge-value {
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+}
+
+.bmi-info h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.bmi-info p {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+.bmi-underweight { background: linear-gradient(135deg, #74b9ff, #0984e3); }
+.bmi-normal { background: linear-gradient(135deg, #00b894, #00cec9); }
+.bmi-overweight { background: linear-gradient(135deg, #fdcb6e, #e17055); }
+.bmi-obese { background: linear-gradient(135deg, #d63031, #e84393); }
+
+.height-input-section {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+    margin-bottom: 24px;
+    padding: 16px 20px;
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    flex-wrap: wrap;
+}
+
+.height-input-section .form-group {
+    margin-bottom: 0;
+    min-width: 150px;
+}
+
+/* ===== EXPORT/IMPORT ===== */
+.btn-export, .btn-import-label {
+    width: 100%;
+    padding: 10px;
+    background: rgba(0,206,201,0.1);
+    border: 1px solid rgba(0,206,201,0.2);
+    border-radius: var(--radius-sm);
+    color: rgba(255,255,255,0.6);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all var(--transition);
+    font-family: inherit;
+    margin-bottom: 6px;
+    text-align: center;
+    display: block;
+}
+
+.btn-export:hover, .btn-import-label:hover {
+    background: rgba(0,206,201,0.2);
+    border-color: rgba(0,206,201,0.4);
+    color: var(--accent);
+}
+
+.hidden-input {
+    display: none;
+}
+
+/* ===== CHIP COUNTER ===== */
+.chip .chip-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background: rgba(0,0,0,0.1);
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-left: 4px;
+}
+
+.chip.active .chip-count {
+    background: rgba(255,255,255,0.25);
+}
+
+/* ===== CONFETTI ===== */
+@keyframes confettiFall {
+    0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+.confetti-piece {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    top: -10px;
+    z-index: 10000;
+    animation: confettiFall 3s ease-in forwards;
+    pointer-events: none;
+}
+
+/* ===== RESPONSIVE ADDITIONS ===== */
+@media (max-width: 768px) {
+    .summary-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .rest-timer-bar {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+    .bmi-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    .height-input-section {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .summary-stats-grid {
+        grid-template-columns: 1fr;
+    }
 }
