@@ -1069,7 +1069,7 @@ const EXERCISES_DB = [
         equipment: "Máquina Peck Deck",
         emoji: "🦋",
         image: "https://images.unsplash.com/photo-1534368786749-b63e05c92717?w=600&h=400&fit=crop",
-        videoId: "bQgJpTt-fV8",
+        videoId: "Iwe6AmxVf7o",
         description: "Máquina de aislamiento que proporciona movimiento controlado y seguro para el pecho.",
         muscles: ["Pectoral mayor", "Deltoides anterior"],
         instructions: [
@@ -1095,7 +1095,7 @@ const EXERCISES_DB = [
         equipment: "Máquina Press Militar",
         emoji: "🏋️",
         image: "https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600&h=400&fit=crop",
-        videoId: "qsXKEyglDe4",
+        videoId: "2yjwXTZQDDI",
         description: "Versión controlada y segura del press militar para desarrollar hombros sin riesgo de lesión.",
         muscles: ["Deltoides anterior", "Deltoides medio", "Tríceps", "Parte superior del pecho"],
         instructions: [
@@ -1119,7 +1119,7 @@ const EXERCISES_DB = [
         equipment: "Máquina Pec Deck Invertido o Mancuernas",
         emoji: "🕊️",
         image: "https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600&h=400&fit=crop",
-        videoId: "baknXv8vk5s",
+        videoId: "3VcKaXpzqRo",
         description: "Ejercicio aislado para fortalecer los deltoides posteriores y mejorar la postura.",
         muscles: ["Deltoides posterior", "Romboides", "Trapecio medio"],
         instructions: [
@@ -1145,7 +1145,7 @@ const EXERCISES_DB = [
         equipment: "Mancuerna o Kettlebell",
         emoji: "🏺",
         image: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&h=400&fit=crop",
-        videoId: "VdJJiE9hZh8",
+        videoId: "ultWZbUMPL8",
         description: "Variación amigable para principiantes que mejora la movilidad y postura en la sentadilla.",
         muscles: ["Cuádriceps", "Glúteo mayor", "Isquiotibiales", "Core"],
         instructions: [
@@ -1169,7 +1169,7 @@ const EXERCISES_DB = [
         equipment: "Máquina de Pantorrillas",
         emoji: "🦵",
         image: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&h=400&fit=crop",
-        videoId: "Nj8JECAa8Ws",
+        videoId: "-M4-G8p8fmc",
         description: "Ejercicio aislado y controlado para desarrollar la fuerza y definición en las pantorrillas.",
         muscles: ["Gemelo", "Sóleo"],
         instructions: [
@@ -1195,7 +1195,7 @@ const EXERCISES_DB = [
         equipment: "Polea alta con cuerda",
         emoji: "🪢",
         image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&h=400&fit=crop",
-        videoId: "32z-5drgP-s",
+        videoId: "2-LAMcpzODU",
         description: "Variación de jalón que permite separación de los tríceps y mejor contracción.",
         muscles: ["Tríceps", "Extensores del antebrazo"],
         instructions: [
@@ -1219,7 +1219,7 @@ const EXERCISES_DB = [
         equipment: "Mancuernas o Kettlebells",
         emoji: "🚶",
         image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&h=400&fit=crop",
-        videoId: "3r3QbN6p5U8",
+        videoId: "rep-qVOkqgk",
         description: "Ejercicio funcional que fortalece agarres, antebrazos, trapecios y core.",
         muscles: ["Antebrazos", "Trapecio", "Core", "Estabilizadores"],
         instructions: [
@@ -1245,7 +1245,7 @@ const EXERCISES_DB = [
         equipment: "Máquina de Crunch",
         emoji: "⚙️",
         image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
-        videoId: "OJ7pO0FXWYo",
+        videoId: "Xyd_fa5zoEU",
         description: "Versión controlada del crunch que proporciona aislamiento seguro del recto abdominal.",
         muscles: ["Recto abdominal", "Oblicuos"],
         instructions: [
@@ -1269,7 +1269,7 @@ const EXERCISES_DB = [
         equipment: "Máquina de Elevación de Piernas",
         emoji: "📈",
         image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
-        videoId: "QXJRLEOXJwg",
+        videoId: "YyvSfVjQeL0",
         description: "Ejercicio de máquina para fortalecer el core inferior y los abdominales bajos.",
         muscles: ["Recto abdominal", "Flexores de cadera", "Core"],
         instructions: [
