@@ -1058,5 +1058,232 @@ const EXERCISES_DB = [
             "Mantén los codos cerca del cuerpo.",
             "Usa una superficie con algo de amortiguación para proteger las articulaciones."
         ]
+    },
+
+    // ==================== NUEVOS - PECHO ====================
+    {
+        id: "peck-deck-machine",
+        name: "Aperturas en Peck Deck (Máquina)",
+        category: "pecho",
+        difficulty: "principiante",
+        equipment: "Máquina Peck Deck",
+        emoji: "🦋",
+        image: "https://images.unsplash.com/photo-1534368786749-b63e05c92717?w=600&h=400&fit=crop",
+        videoId: "bQgJpTt-fV8",
+        description: "Máquina de aislamiento que proporciona movimiento controlado y seguro para el pecho.",
+        muscles: ["Pectoral mayor", "Deltoides anterior"],
+        instructions: [
+            "Siéntate en la máquina con la espalda completamente apoyada.",
+            "Agarra los mangos con las manos a la altura de los hombros.",
+            "Junta los mangos en un movimiento fluido hacia el centro.",
+            "Siente la contracción del pecho por 1-2 segundos.",
+            "Regresa lentamente a la posición inicial."
+        ],
+        tips: [
+            "Ajusta el respaldo para que los mangos queden a la altura del centro del pecho.",
+            "No uses demasiado peso para mantener el control.",
+            "Este ejercicio es excelente para principiantes."
+        ]
+    },
+
+    // ==================== NUEVOS - HOMBROS ====================
+    {
+        id: "press-militar-machine",
+        name: "Press Militar en Máquina",
+        category: "hombros",
+        difficulty: "principiante",
+        equipment: "Máquina Press Militar",
+        emoji: "🏋️",
+        image: "https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600&h=400&fit=crop",
+        videoId: "qsXKEyglDe4",
+        description: "Versión controlada y segura del press militar para desarrollar hombros sin riesgo de lesión.",
+        muscles: ["Deltoides anterior", "Deltoides medio", "Tríceps", "Parte superior del pecho"],
+        instructions: [
+            "Siéntate en la máquina con la espalda contra el respaldo.",
+            "Agarra los mangos a la altura de los hombros.",
+            "Empuja los mangos hacia arriba hasta la extensión completa.",
+            "Baja los mangos de forma controlada a la posición inicial.",
+            "Mantén la espalda firme contra el respaldo."
+        ],
+        tips: [
+            "Perfecto para ejecución consistente sin necesidad de balancear peso.",
+            "Ideal para principiantes que quieren aprender la forma correcta.",
+            "Ajusta el asiento para que los mangos queden a la altura de los ojos."
+        ]
+    },
+    {
+        id: "rear-delt-fly",
+        name: "Pájaros (Deltoides Posteriores)",
+        category: "hombros",
+        difficulty: "intermedio",
+        equipment: "Máquina Pec Deck Invertido o Mancuernas",
+        emoji: "🕊️",
+        image: "https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600&h=400&fit=crop",
+        videoId: "baknXv8vk5s",
+        description: "Ejercicio aislado para fortalecer los deltoides posteriores y mejorar la postura.",
+        muscles: ["Deltoides posterior", "Romboides", "Trapecio medio"],
+        instructions: [
+            "Siéntate en la máquina o párate con mancuernas ligeras.",
+            "Coloca tus brazos extendidos al frente a la altura del pecho.",
+            "Abre los brazos como si quisieras volar, formando una T.",
+            "En el punto máximo, aprieta los omóplatos.",
+            "Regresa al centro de forma controlada."
+        ],
+        tips: [
+            "Usa un peso ligero, la forma es más importante que la carga.",
+            "Concéntrate en la contracción del deltoides posterior.",
+            "Este ejercicio es crucial para balance postural."
+        ]
+    },
+
+    // ==================== NUEVOS - PIERNAS ====================
+    {
+        id: "goblet-squat",
+        name: "Sentadilla Goblet (Con Copa)",
+        category: "piernas",
+        difficulty: "principiante",
+        equipment: "Mancuerna o Kettlebell",
+        emoji: "🏺",
+        image: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&h=400&fit=crop",
+        videoId: "VdJJiE9hZh8",
+        description: "Variación amigable para principiantes que mejora la movilidad y postura en la sentadilla.",
+        muscles: ["Cuádriceps", "Glúteo mayor", "Isquiotibiales", "Core"],
+        instructions: [
+            "Sostén una mancuerna o kettlebell cerca del pecho con ambas manos.",
+            "Coloca los pies a la anchura de los hombros.",
+            "Baja el cuerpo doblando las rodillas y caderas.",
+            "Desciende hasta que los muslos estén paralelos al suelo.",
+            "Sube empujando con los talones a la posición inicial."
+        ],
+        tips: [
+            "Perfecto para aprender la forma correcta de la sentadilla.",
+            "Mantén el pecho erguido durante todo el movimiento.",
+            "El peso cerca del cuerpo ayuda con el balance."
+        ]
+    },
+    {
+        id: "calf-raise-machine",
+        name: "Elevación de Talones en Máquina",
+        category: "piernas",
+        difficulty: "principiante",
+        equipment: "Máquina de Pantorrillas",
+        emoji: "🦵",
+        image: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&h=400&fit=crop",
+        videoId: "Nj8JECAa8Ws",
+        description: "Ejercicio aislado y controlado para desarrollar la fuerza y definición en las pantorrillas.",
+        muscles: ["Gemelo", "Sóleo"],
+        instructions: [
+            "Siéntate o colócate de pie en la máquina de pantorrillas.",
+            "Coloca los pies a la anchura de los hombros en la plataforma.",
+            "Sube sobre las puntas de los pies, levantando los talones.",
+            "Aprieta la pantorrilla en la parte superior del movimiento.",
+            "Baja los talones de forma controlada."
+        ],
+        tips: [
+            "Las pantorrillas responden bien a altas repeticiones.",
+            "Mantén un movimiento lento y controlado.",
+            "Realiza 15-20 repeticiones para máximo beneficio."
+        ]
+    },
+
+    // ==================== NUEVOS - BRAZOS ====================
+    {
+        id: "tricep-rope-pushdown",
+        name: "Jalón de Tríceps con Cuerda",
+        category: "brazos",
+        difficulty: "principiante",
+        equipment: "Polea alta con cuerda",
+        emoji: "🪢",
+        image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&h=400&fit=crop",
+        videoId: "32z-5drgP-s",
+        description: "Variación de jalón que permite separación de los tríceps y mejor contracción.",
+        muscles: ["Tríceps", "Extensores del antebrazo"],
+        instructions: [
+            "De pie frente a la polea, agarra la cuerda con ambas manos.",
+            "Los brazos deben estar a 90 grados, codos a los lados.",
+            "Empuja la cuerda hacia abajo extiendiendo los codos completamente.",
+            "En la parte baja, separa la cuerda abriendo los brazos.",
+            "Regresa controladamente a la posición inicial."
+        ],
+        tips: [
+            "Mantén los codos en los lados durante el movimiento.",
+            "La separación de la cuerda permite mejor contracción.",
+            "No uses demasiado peso, es un ejercicio de aislamiento."
+        ]
+    },
+    {
+        id: "farmers-carry",
+        name: "Paseo del Granjero (Farmer's Carry)",
+        category: "brazos",
+        difficulty: "intermedio",
+        equipment: "Mancuernas o Kettlebells",
+        emoji: "🚶",
+        image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&h=400&fit=crop",
+        videoId: "3r3QbN6p5U8",
+        description: "Ejercicio funcional que fortalece agarres, antebrazos, trapecios y core.",
+        muscles: ["Antebrazos", "Trapecio", "Core", "Estabilizadores"],
+        instructions: [
+            "Sostén una mancuerna o kettlebell pesada en cada mano.",
+            "Camina hacia adelante manteniendo una postura erguida.",
+            "Mantén los hombros atrás y el core activado.",
+            "Camina una distancia determinada sin soltar el peso.",
+            "Descansa y repite."
+        ],
+        tips: [
+            "Excelente para desarrollar agarres fuertes.",
+            "Camina en línea recta sin balancearte.",
+            "Perfecto para trabajo de core isométrico."
+        ]
+    },
+
+    // ==================== NUEVOS - CORE ====================
+    {
+        id: "crunch-machine",
+        name: "Crunch en Máquina",
+        category: "core",
+        difficulty: "principiante",
+        equipment: "Máquina de Crunch",
+        emoji: "⚙️",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
+        videoId: "OJ7pO0FXWYo",
+        description: "Versión controlada del crunch que proporciona aislamiento seguro del recto abdominal.",
+        muscles: ["Recto abdominal", "Oblicuos"],
+        instructions: [
+            "Siéntate en la máquina y coloca unos las manos en los paneles laterales.",
+            "Asegúrate de que el acolchado esté en contacto con el pecho.",
+            "Contrae el abdomen y flexiona hacia adelante.",
+            "Siente la contracción en máxima compresión.",
+            "Regresa lentamente a la posición inicial."
+        ],
+        tips: [
+            "Enfócate en contraer el abdomen, no en el cuello.",
+            "Movimiento corto pero intenso es más efectivo.",
+            "Realiza 12-15 repeticiones por serie."
+        ]
+    },
+    {
+        id: "machine-leg-extension-core",
+        name: "Elevación de Piernas en Máquina",
+        category: "core",
+        difficulty: "intermedio",
+        equipment: "Máquina de Elevación de Piernas",
+        emoji: "📈",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
+        videoId: "QXJRLEOXJwg",
+        description: "Ejercicio de máquina para fortalecer el core inferior y los abdominales bajos.",
+        muscles: ["Recto abdominal", "Flexores de cadera", "Core"],
+        instructions: [
+            "Siéntate en la máquina de elevación de piernas.",
+            "Agarra las asas laterales para estabilidad.",
+            "Levanta las rodillas apretando el core.",
+            "Lleva las rodillas hacia el pecho de forma controlada.",
+            "Baja las piernas sin que los pies toquen el suelo."
+        ],
+        tips: [
+            "Mantén el movimiento lento y controlado.",
+            "Aprieta el abdomen al subir.",
+            "Este ejercicio es efectivo para abdominales bajos."
+        ]
     }
 ];
+

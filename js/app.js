@@ -1167,6 +1167,44 @@
     }
 
     // ===== WORKOUT LOG =====
+    function getPreviousExercisePerformance(exerciseId, beforeDate) {
+        const previousLogs = STATE.workoutLog.filter(log => 
+            log.date < beforeDate && 
+            log.exercises.some(ex => ex.exerciseId === exerciseId)
+        ).sort((a, b) => new Date(b.date) - new Date(a.date));
+        
+        if (previousLogs.length === 0) return null;
+        
+        const prevLog = previousLogs[0];
+        const prevExercise = prevLog.exercises.find(ex => ex.exerciseId === exerciseId);
+        return prevExercise;
+    }
+
+    function getProgressIndicator(currentEx, previousEx) {
+        if (!previousEx || !currentEx || currentEx.sets.length === 0) return "";
+
+        const prevWeight = previousEx.sets.length > 0 ? parseFloat(previousEx.sets[0].weight) || 0 : 0;
+        const currentWeight = parseFloat(currentEx.sets[0].weight) || 0;
+        const prevReps = previousEx.sets.length > 0 ? parseInt(previousEx.sets[0].reps) || 0 : 0;
+        const currentReps = parseInt(currentEx.sets[0].reps) || 0;
+        
+        let indicator = "";
+        
+        if (currentWeight > prevWeight) {
+            indicator += `📈 +${(currentWeight - prevWeight).toFixed(1)}kg`;
+        } else if (currentWeight < prevWeight) {
+            indicator += `📉 -${(prevWeight - currentWeight).toFixed(1)}kg`;
+        }
+        
+        if (currentReps > prevReps) {
+            indicator += ` <span style="color:var(--success)">+${currentReps - prevReps} reps</span>`;
+        } else if (currentReps < prevReps && currentReps > 0) {
+            indicator += ` <span style="color:var(--warning)">${currentReps - prevReps} reps</span>`;
+        }
+        
+        return indicator ? `<span style="font-size:12px;color:var(--success)">${indicator}</span>` : "";
+    }
+
     function renderLog() {
         const container = $("#workout-log");
 
@@ -1188,18 +1226,12 @@
 
         container.innerHTML = logs
             .map(
-                (entry) => `
-            <div class="log-entry">
-                <div class="log-entry-header">
-                    <div>
-                        <h3>${sanitize(entry.routineName)}</h3>
-                        <span class="log-date">${formatDate(entry.date)}</span>
-                    </div>
-                    <span class="log-duration">⏱️ ${formatDuration(entry.duration)}</span>
-                </div>
-                ${entry.exercises
-                    .map(
-                        (ex) => `
+                (entry) => {
+                    const exerciseDetails = entry.exercises.map((ex) => {
+                        const prevEx = getPreviousExercisePerformance(ex.exerciseId, entry.date);
+                        const progressHtml = getProgressIndicator(ex, prevEx);
+                        
+                        return `
                     <div class="log-exercise-summary">
                         <strong>${sanitize(ex.name)}</strong>
                         <div class="sets-summary">
@@ -1210,15 +1242,26 @@
                                 )
                                 .join(" · ")}
                         </div>
+                        ${progressHtml ? `<div style="margin-top:6px">${progressHtml}</div>` : ""}
+                    </div>`;
+                    }).join("");
+
+                    return `
+            <div class="log-entry">
+                <div class="log-entry-header">
+                    <div>
+                        <h3>${sanitize(entry.routineName)}</h3>
+                        <span class="log-date">${formatDate(entry.date)}</span>
                     </div>
-                `
-                    )
-                    .join("")}
+                    <span class="log-duration">⏱️ ${formatDuration(entry.duration)}</span>
+                </div>
+                ${exerciseDetails}
                 <div class="log-entry-footer">
                     <button class="btn-danger btn-sm btn-delete-log" data-id="${entry.id}">🗑️ Eliminar</button>
                 </div>
             </div>
-        `
+        `;
+                }
             )
             .join("");
 
