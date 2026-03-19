@@ -1084,12 +1084,6 @@ body {
     border: 1px solid rgba(108,92,231,0.12);
 }
 
-.tag.difficulty-facil {
-    background: rgba(0,184,148,0.1);
-    color: var(--success);
-    border-color: rgba(0,184,148,0.15);
-}
-
 .tag.difficulty-intermedio {
     background: rgba(253,203,110,0.15);
     color: #e17055;
@@ -1498,13 +1492,12 @@ body {
     padding: 20px 20px 20px 24px;
     box-shadow: var(--shadow);
     border: 1px solid var(--border);
-    border-left: 4px solid var(--primary);
+    border-left: none;
     transition: all var(--transition);
 }
 
 .log-entry:hover {
     box-shadow: var(--shadow-hover);
-    border-left-color: var(--accent);
 }
 
 .log-entry-header {
@@ -2631,7 +2624,7 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
     .btn-scroll-top {
-        bottom: 16px;
+        bottom: 70px;
         right: 16px;
         width: 40px;
         height: 40px;

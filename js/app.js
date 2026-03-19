@@ -193,10 +193,12 @@
             greetEl.innerHTML = `<span class="greeting-emoji">${greeting.emoji}</span> ${greeting.text}, ${sanitize(firstName)}`;
         }
 
+        // Streak (cached)
+        const streak = calculateStreak();
+
         // Motivational subtitle
         const subEl = $("#dashboard-subtitle");
         if (subEl) {
-            const streak = calculateStreak();
             if (streak >= 7) {
                 subEl.textContent = `🔥 ¡Increíble! Llevas ${streak} días seguidos. ¡Sigue así!`;
             } else if (streak >= 3) {
@@ -211,9 +213,6 @@
         // Stats with animated counters
         animateValue($("#stat-workouts"), STATE.workoutLog.length);
         animateValue($("#stat-routines"), STATE.routines.length);
-
-        // Streak
-        const streak = calculateStreak();
         animateValue($("#stat-streak"), streak);
 
         // Current weight
@@ -2107,7 +2106,7 @@
         }
 
         calculateBMI();
-        renderDashboard();
+        navigateTo("dashboard");
         renderCatalog();
         renderRoutines();
     }
