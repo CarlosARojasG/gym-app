@@ -151,21 +151,20 @@
     }
 
     // ===== THEME =====
-    function initTheme() {
+    function applyTheme() {
         if (STATE.theme === "dark") {
             document.body.setAttribute("data-theme", "dark");
             $("#btn-toggle-theme").textContent = "☀️ Modo Claro";
+        } else {
+            document.body.removeAttribute("data-theme");
+            $("#btn-toggle-theme").textContent = "🌙 Modo Oscuro";
         }
+    }
 
+    function initThemeListeners() {
         $("#btn-toggle-theme").addEventListener("click", () => {
             STATE.theme = STATE.theme === "light" ? "dark" : "light";
-            if (STATE.theme === "dark") {
-                document.body.setAttribute("data-theme", "dark");
-                $("#btn-toggle-theme").textContent = "☀️ Modo Claro";
-            } else {
-                document.body.removeAttribute("data-theme");
-                $("#btn-toggle-theme").textContent = "🌙 Modo Oscuro";
-            }
+            applyTheme();
             saveState();
             // Re-render charts with new theme
             renderDashboard();
@@ -234,8 +233,18 @@
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 
+        const todayStr = today.toISOString().split("T")[0];
+        const yesterday = new Date(today);
+        yesterday.setDate(yesterday.getDate() - 1);
+        const yesterdayStr = yesterday.toISOString().split("T")[0];
+
+        // Start from today if worked out today, otherwise from yesterday
+        const startDate = dates.includes(todayStr) ? today : 
+                          dates.includes(yesterdayStr) ? yesterday : null;
+        if (!startDate) return 0;
+
         for (let i = 0; i < dates.length; i++) {
-            const expected = new Date(today);
+            const expected = new Date(startDate);
             expected.setDate(expected.getDate() - i);
             const expectedStr = expected.toISOString().split("T")[0];
 
@@ -875,6 +884,14 @@
     }
 
     // ===== WORKOUT (Active Training) =====
+    function handleBeforeUnload(e) {
+        if (STATE.activeWorkout) {
+            e.preventDefault();
+            e.returnValue = "";
+        }
+    }
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
     function startWorkout(routineId) {
         const routine = STATE.routines.find((r) => r.id === routineId);
         if (!routine) return;
@@ -1041,6 +1058,7 @@
     }
 
     function startWorkoutTimer() {
+        if (STATE.workoutTimerInterval) clearInterval(STATE.workoutTimerInterval);
         STATE.workoutTimerInterval = setInterval(() => {
             if (!STATE.activeWorkout) return;
             const elapsed = Math.floor(
@@ -1599,13 +1617,7 @@
     }
 
     // ===== BMI CALCULATOR =====
-    function initBMI() {
-        const savedHeight = localStorage.getItem(userKey("height"));
-        if (savedHeight) {
-            const heightInput = $("#height-value");
-            if (heightInput) heightInput.value = savedHeight;
-        }
-
+    function initBMIListeners() {
         const saveBtn = $("#btn-save-height");
         if (saveBtn) {
             saveBtn.addEventListener("click", () => {
@@ -1619,12 +1631,16 @@
                 calculateBMI();
             });
         }
-
-        calculateBMI();
     }
 
     function calculateBMI() {
-        const height = parseFloat(localStorage.getItem(userKey("height")));
+        const savedHeight = localStorage.getItem(userKey("height"));
+        if (savedHeight) {
+            const heightInput = $("#height-value");
+            if (heightInput) heightInput.value = savedHeight;
+        }
+
+        const height = parseFloat(savedHeight);
         if (!height || STATE.weightLog.length === 0) {
             const card = $("#bmi-card");
             if (card) card.style.display = "none";
@@ -1894,10 +1910,11 @@
 
         // Load user data and start app
         loadUserState();
-        initTheme();
+        applyTheme();
 
         // Only bind event listeners once to prevent duplicates on re-login
         if (!appInitialized) {
+            initThemeListeners();
             initNavigation();
             initModals();
             initCatalogFilters();
@@ -1905,10 +1922,11 @@
             initLogFilters();
             initWeightForm();
             initExportImport();
+            initBMIListeners();
             appInitialized = true;
         }
 
-        initBMI();
+        calculateBMI();
         renderDashboard();
         renderCatalog();
         renderRoutines();

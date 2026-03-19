@@ -34,7 +34,7 @@ const EXERCISES_DB = [
         emoji: "💪",
         image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=400&fit=crop",
         videoId: "8iPEnn-ltC8",
-        description: "Targeting the upper chest, this variation helps build a fuller, more defined chest.",
+        description: "Enfocado en la parte superior del pecho, esta variación ayuda a desarrollar un pectoral más completo y definido.",
         muscles: ["Pectoral mayor (porción clavicular)", "Deltoides anterior", "Tríceps"],
         instructions: [
             "Ajusta el banco a 30-45 grados de inclinación.",
