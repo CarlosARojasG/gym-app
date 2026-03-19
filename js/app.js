@@ -415,6 +415,15 @@
             );
         }
 
+        // Update exercise count
+        const countEl = $("#catalog-exercise-count");
+        if (countEl) {
+            const total = EXERCISES_DB.length;
+            countEl.textContent = exercises.length === total
+                ? `${total} ejercicios disponibles`
+                : `${exercises.length} de ${total} ejercicios`;
+        }
+
         if (exercises.length === 0) {
             grid.innerHTML =
                 '<p class="empty-state">No se encontraron ejercicios.</p>';
@@ -699,6 +708,18 @@
                 }
             });
         });
+
+        // Close topmost modal on Escape
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                const openModals = [...$$(".modal.open")];
+                if (openModals.length > 0) {
+                    const topModal = openModals[openModals.length - 1];
+                    const closeBtn = topModal.querySelector(".modal-close");
+                    if (closeBtn) closeBtn.click();
+                }
+            }
+        });
     }
 
     // ===== ROUTINES =====
@@ -720,6 +741,7 @@
                 <div class="routine-card-header">
                     <h3>${sanitize(routine.name)}</h3>
                     <div class="routine-actions">
+                        <button class="btn-icon btn-duplicate-routine" data-id="${routine.id}" title="Duplicar">📋</button>
                         <button class="btn-icon btn-edit-routine" data-id="${routine.id}" title="Editar">✏️</button>
                         <button class="btn-icon btn-delete-routine" data-id="${routine.id}" title="Eliminar">🗑️</button>
                     </div>
@@ -750,6 +772,13 @@
             .join("");
 
         // Event handlers
+        container.querySelectorAll(".btn-duplicate-routine").forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                duplicateRoutine(btn.dataset.id);
+            });
+        });
+
         container.querySelectorAll(".btn-edit-routine").forEach((btn) => {
             btn.addEventListener("click", (e) => {
                 e.stopPropagation();
@@ -856,6 +885,8 @@
         });
     }
 
+    let pickerSearchHandler = null;
+
     function openExercisePicker() {
         const container = $("#picker-list");
         const searchInput = $("#picker-search");
@@ -899,9 +930,12 @@
             });
         }
 
-        searchInput.addEventListener("input", (e) =>
-            renderPickerList(e.target.value)
-        );
+        // Remove previous listener to prevent leak
+        if (pickerSearchHandler) {
+            searchInput.removeEventListener("input", pickerSearchHandler);
+        }
+        pickerSearchHandler = (e) => renderPickerList(e.target.value);
+        searchInput.addEventListener("input", pickerSearchHandler);
         renderPickerList();
         openModal("exercise-picker-modal");
     }
@@ -957,6 +991,23 @@
         $("#routine-description").value = routine.description || "";
         renderRoutineExercises();
         openModal("routine-modal");
+    }
+
+    function duplicateRoutine(routineId) {
+        const routine = STATE.routines.find((r) => r.id === routineId);
+        if (!routine) return;
+
+        STATE.routines.push({
+            id: generateId(),
+            name: routine.name + " (copia)",
+            description: routine.description || "",
+            exercises: routine.exercises.map((e) => ({ ...e })),
+            createdAt: new Date().toISOString(),
+        });
+        saveState();
+        renderRoutines();
+        renderDashboard();
+        showToast("Rutina duplicada correctamente");
     }
 
     function deleteRoutine(routineId) {

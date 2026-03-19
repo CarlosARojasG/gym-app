@@ -52,7 +52,7 @@ const EXERCISES_DB = [
         id: "chest-fly",
         name: "Aperturas con Mancuernas",
         category: "pecho",
-        difficulty: "facil",
+        difficulty: "principiante",
         equipment: "Mancuernas y banco",
         emoji: "🦋",
         image: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&h=400&fit=crop",
@@ -75,7 +75,7 @@ const EXERCISES_DB = [
         id: "push-ups",
         name: "Flexiones (Push-ups)",
         category: "pecho",
-        difficulty: "facil",
+        difficulty: "principiante",
         equipment: "Peso corporal",
         emoji: "🤸",
         image: "https://images.unsplash.com/photo-1598971639058-a05474e0596f?w=600&h=400&fit=crop",
@@ -170,7 +170,7 @@ const EXERCISES_DB = [
         id: "lat-pulldown",
         name: "Jalón al Pecho (Polea Alta)",
         category: "espalda",
-        difficulty: "facil",
+        difficulty: "principiante",
         equipment: "Máquina de polea",
         emoji: "⬇️",
         image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
@@ -219,7 +219,7 @@ const EXERCISES_DB = [
         id: "leg-press",
         name: "Prensa de Piernas",
         category: "piernas",
-        difficulty: "facil",
+        difficulty: "principiante",
         equipment: "Máquina prensa",
         emoji: "🦿",
         image: "https://images.unsplash.com/photo-1434682881908-b43d0467b798?w=600&h=400&fit=crop",
@@ -242,7 +242,7 @@ const EXERCISES_DB = [
         id: "lunges",
         name: "Zancadas (Lunges)",
         category: "piernas",
-        difficulty: "facil",
+        difficulty: "principiante",
         equipment: "Mancuernas (opcional)",
         emoji: "🚶",
         image: "https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=600&h=400&fit=crop",
@@ -288,7 +288,7 @@ const EXERCISES_DB = [
         id: "calf-raises",
         name: "Elevación de Gemelos",
         category: "piernas",
-        difficulty: "facil",
+        difficulty: "principiante",
         equipment: "Máquina o escalón",
         emoji: "🦶",
         image: "https://images.unsplash.com/photo-1571019613576-2b22c76fd955?w=600&h=400&fit=crop",
@@ -336,7 +336,7 @@ const EXERCISES_DB = [
         id: "lateral-raises",
         name: "Elevaciones Laterales",
         category: "hombros",
-        difficulty: "facil",
+        difficulty: "principiante",
         equipment: "Mancuernas",
         emoji: "🦅",
         image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&h=400&fit=crop",
@@ -360,7 +360,7 @@ const EXERCISES_DB = [
         id: "face-pulls",
         name: "Face Pulls",
         category: "hombros",
-        difficulty: "facil",
+        difficulty: "principiante",
         equipment: "Cable con cuerda",
         emoji: "🎯",
         image: "https://images.unsplash.com/photo-1534368786749-b63e05c92717?w=600&h=400&fit=crop",
@@ -385,7 +385,7 @@ const EXERCISES_DB = [
         id: "barbell-curl",
         name: "Curl con Barra",
         category: "brazos",
-        difficulty: "facil",
+        difficulty: "principiante",
         equipment: "Barra (recta o Z)",
         emoji: "💪",
         image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&h=400&fit=crop",
@@ -408,7 +408,7 @@ const EXERCISES_DB = [
         id: "hammer-curl",
         name: "Curl Martillo",
         category: "brazos",
-        difficulty: "facil",
+        difficulty: "principiante",
         equipment: "Mancuernas",
         emoji: "🔨",
         image: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&h=400&fit=crop",
@@ -431,7 +431,7 @@ const EXERCISES_DB = [
         id: "tricep-pushdown",
         name: "Extensión de Tríceps en Polea",
         category: "brazos",
-        difficulty: "facil",
+        difficulty: "principiante",
         equipment: "Cable con barra o cuerda",
         emoji: "⬇️",
         image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=400&fit=crop",
@@ -479,7 +479,7 @@ const EXERCISES_DB = [
         id: "plank",
         name: "Plancha (Plank)",
         category: "core",
-        difficulty: "facil",
+        difficulty: "principiante",
         equipment: "Peso corporal",
         emoji: "🧱",
         image: "https://images.unsplash.com/photo-1566241142559-40e1dab266c6?w=600&h=400&fit=crop",
@@ -502,7 +502,7 @@ const EXERCISES_DB = [
         id: "crunches",
         name: "Abdominales (Crunches)",
         category: "core",
-        difficulty: "facil",
+        difficulty: "principiante",
         equipment: "Peso corporal",
         emoji: "🔄",
         image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
@@ -573,7 +573,7 @@ const EXERCISES_DB = [
         id: "jumping-jacks",
         name: "Jumping Jacks",
         category: "cardio",
-        difficulty: "facil",
+        difficulty: "principiante",
         equipment: "Peso corporal",
         emoji: "⭐",
         image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&h=400&fit=crop",
@@ -1283,6 +1283,500 @@ const EXERCISES_DB = [
             "Mantén el movimiento lento y controlado.",
             "Aprieta el abdomen al subir.",
             "Este ejercicio es efectivo para abdominales bajos."
+        ]
+    },
+
+    // ==================== NUEVOS - PECHO (Ampliación) ====================
+    {
+        id: "dumbbell-flat-press",
+        name: "Press con Mancuernas Plano",
+        category: "pecho",
+        difficulty: "principiante",
+        equipment: "Mancuernas y banco plano",
+        emoji: "🏋️",
+        image: "https://images.unsplash.com/photo-1534368786749-b63e05c92717?w=600&h=400&fit=crop",
+        videoId: "6aKBJNf_7BY",
+        description: "Variante del press de banca que permite mayor rango de movimiento y trabaja cada lado de forma independiente.",
+        muscles: ["Pectoral mayor", "Tríceps", "Deltoides anterior"],
+        instructions: [
+            "Acuéstate en el banco plano con una mancuerna en cada mano.",
+            "Sostén las mancuernas a la altura del pecho con los codos a 45 grados.",
+            "Empuja las mancuernas hacia arriba hasta casi extender los brazos.",
+            "Baja de forma controlada hasta que los codos queden a la altura del pecho.",
+            "Mantén los hombros pegados al banco durante todo el movimiento."
+        ],
+        tips: [
+            "Permite mayor estiramiento del pecho que la barra.",
+            "Ideal para corregir desbalances entre lados.",
+            "No gires las muñecas durante el movimiento."
+        ]
+    },
+    {
+        id: "chest-dips",
+        name: "Fondos para Pecho",
+        category: "pecho",
+        difficulty: "intermedio",
+        equipment: "Barras paralelas",
+        emoji: "⬇️",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=400&fit=crop",
+        videoId: "gdQtj2KLBvs",
+        description: "Ejercicio compuesto con peso corporal que enfatiza la parte inferior del pecho cuando se hace con inclinación.",
+        muscles: ["Pectoral mayor (porción inferior)", "Tríceps", "Deltoides anterior"],
+        instructions: [
+            "Agarra las barras paralelas y elévate con brazos extendidos.",
+            "Inclina el torso hacia adelante unos 30 grados.",
+            "Baja el cuerpo flexionando los codos hasta sentir estiramiento en el pecho.",
+            "Los codos deben separarse ligeramente hacia los lados.",
+            "Empuja hacia arriba hasta la posición inicial."
+        ],
+        tips: [
+            "Inclínate más hacia adelante que en los fondos de tríceps.",
+            "Si es difícil, usa bandas de asistencia.",
+            "No bajes demasiado para proteger los hombros."
+        ]
+    },
+
+    // ==================== NUEVOS - ESPALDA (Ampliación) ====================
+    {
+        id: "t-bar-row",
+        name: "Remo en T",
+        category: "espalda",
+        difficulty: "intermedio",
+        equipment: "Barra T o landmine",
+        emoji: "🔱",
+        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=400&fit=crop",
+        videoId: "lUtFwA_285E",
+        description: "Ejercicio compuesto para desarrollar grosor y densidad en la espalda media y baja.",
+        muscles: ["Dorsal ancho", "Romboides", "Trapecio medio", "Bíceps", "Erectores espinales"],
+        instructions: [
+            "Colócate sobre la barra T con los pies a la anchura de los hombros.",
+            "Inclínate hacia adelante manteniendo la espalda recta.",
+            "Agarra la manija con ambas manos.",
+            "Tira de la barra hacia el pecho apretando los omóplatos.",
+            "Baja de forma controlada sin redondear la espalda."
+        ],
+        tips: [
+            "Mantén las rodillas ligeramente flexionadas.",
+            "No uses impulso del torso para subir el peso.",
+            "Excelente para desarrollar grosor en la espalda."
+        ]
+    },
+    {
+        id: "hyperextensions",
+        name: "Hiperextensiones",
+        category: "espalda",
+        difficulty: "principiante",
+        equipment: "Banco de hiperextensiones",
+        emoji: "🔙",
+        image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&h=400&fit=crop",
+        videoId: "-Mx-9yxCuco",
+        description: "Ejercicio de aislamiento para fortalecer la espalda baja y prevenir lesiones lumbares.",
+        muscles: ["Erectores espinales", "Glúteos", "Isquiotibiales"],
+        instructions: [
+            "Colócate en el banco de hiperextensiones con las caderas sobre el pad.",
+            "Cruza los brazos sobre el pecho o colócalos detrás de la cabeza.",
+            "Baja el torso de forma controlada hacia el suelo.",
+            "Sube el torso hasta que quede en línea con las piernas.",
+            "No hiperextiendas la espalda más allá de la posición neutra."
+        ],
+        tips: [
+            "Movimiento lento y controlado, sin rebotes.",
+            "Excelente para prevenir dolor de espalda baja.",
+            "Puedes agregar peso con un disco para más intensidad."
+        ]
+    },
+    {
+        id: "dumbbell-pullover",
+        name: "Pull-over con Mancuerna",
+        category: "espalda",
+        difficulty: "intermedio",
+        equipment: "Mancuerna y banco",
+        emoji: "🫁",
+        image: "https://images.unsplash.com/photo-1534368786749-b63e05c92717?w=600&h=400&fit=crop",
+        videoId: "u2r6wTfTnOM",
+        description: "Ejercicio único que trabaja tanto la espalda como el pecho, expandiendo la caja torácica.",
+        muscles: ["Dorsal ancho", "Pectoral mayor", "Tríceps largo", "Serrato anterior"],
+        instructions: [
+            "Acuéstate perpendicular al banco, solo los hombros apoyados.",
+            "Sostén una mancuerna con ambas manos sobre el pecho, brazos extendidos.",
+            "Baja la mancuerna por detrás de la cabeza en un arco amplio.",
+            "Baja hasta sentir el estiramiento en dorsales y pecho.",
+            "Regresa la mancuerna a la posición inicial sobre el pecho."
+        ],
+        tips: [
+            "Mantén una ligera flexión en los codos.",
+            "Respira profundo al bajar para expandir la caja torácica.",
+            "No uses peso excesivo, el estiramiento es clave."
+        ]
+    },
+    {
+        id: "machine-row",
+        name: "Remo en Máquina (Hammer Strength)",
+        category: "espalda",
+        difficulty: "principiante",
+        equipment: "Máquina de remo",
+        emoji: "⚙️",
+        image: "https://images.unsplash.com/photo-1603287681836-b174ce5074c2?w=600&h=400&fit=crop",
+        videoId: "RBCSSg7yMjs",
+        description: "Remo guiado en máquina que permite enfocarse en la contracción sin preocuparse por el balance.",
+        muscles: ["Dorsal ancho", "Romboides", "Trapecio medio", "Bíceps"],
+        instructions: [
+            "Siéntate en la máquina con el pecho contra el pad frontal.",
+            "Agarra las manijas con ambas manos.",
+            "Tira de las manijas hacia atrás apretando los omóplatos.",
+            "Mantén la contracción por un segundo.",
+            "Regresa de forma controlada a la posición inicial."
+        ],
+        tips: [
+            "Ideal para principiantes que aprenden la mecánica del remo.",
+            "Mantén el pecho firme contra el pad.",
+            "Puedes usar agarre neutro o pronado según la máquina."
+        ]
+    },
+
+    // ==================== NUEVOS - PIERNAS (Ampliación) ====================
+    {
+        id: "hack-squat",
+        name: "Sentadilla Hack",
+        category: "piernas",
+        difficulty: "intermedio",
+        equipment: "Máquina Hack Squat",
+        emoji: "🦿",
+        image: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&h=400&fit=crop",
+        videoId: "NEyKZhc5u5A",
+        description: "Sentadilla guiada en máquina que permite enfocarse en los cuádriceps con menos estrés en la espalda.",
+        muscles: ["Cuádriceps", "Glúteos", "Isquiotibiales"],
+        instructions: [
+            "Colócate en la máquina hack con la espalda contra el pad.",
+            "Coloca los pies a la anchura de los hombros en la plataforma.",
+            "Desbloquea la máquina y baja flexionando las rodillas.",
+            "Desciende hasta que los muslos estén paralelos o más abajo.",
+            "Empuja con los talones para subir a la posición inicial."
+        ],
+        tips: [
+            "Varía la posición de los pies para enfatizar diferentes músculos.",
+            "Pies más arriba = más glúteos, pies más abajo = más cuádriceps.",
+            "No bloquees las rodillas al extender."
+        ]
+    },
+    {
+        id: "step-ups",
+        name: "Subidas al Banco (Step-Ups)",
+        category: "piernas",
+        difficulty: "principiante",
+        equipment: "Banco o cajón y mancuernas (opcional)",
+        emoji: "📦",
+        image: "https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=600&h=400&fit=crop",
+        videoId: "jY7t0IYJo5I",
+        description: "Ejercicio unilateral funcional que mejora el equilibrio, fuerza y estabilidad de cada pierna.",
+        muscles: ["Cuádriceps", "Glúteos", "Isquiotibiales", "Core"],
+        instructions: [
+            "Colócate frente a un banco o cajón estable.",
+            "Sube un pie completo al banco.",
+            "Empuja con la pierna de arriba para elevar todo el cuerpo.",
+            "Mantén el equilibrio arriba por un momento.",
+            "Baja de forma controlada con la misma pierna."
+        ],
+        tips: [
+            "No te impulses con la pierna de abajo.",
+            "Mantén el torso erguido durante todo el movimiento.",
+            "La altura del cajón determina la dificultad."
+        ]
+    },
+    {
+        id: "bulgarian-split-squat",
+        name: "Sentadilla Búlgara",
+        category: "piernas",
+        difficulty: "intermedio",
+        equipment: "Banco y mancuernas (opcional)",
+        emoji: "🇧🇬",
+        image: "https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?w=600&h=400&fit=crop",
+        videoId: "le7PfOfjMcQ",
+        description: "Sentadilla unilateral avanzada que desarrolla fuerza, equilibrio y corrige desbalances musculares.",
+        muscles: ["Cuádriceps", "Glúteos", "Isquiotibiales", "Core", "Estabilizadores"],
+        instructions: [
+            "Colócate de espaldas a un banco con un pie apoyado atrás.",
+            "El pie delantero debe estar a un paso del banco.",
+            "Baja el cuerpo flexionando la rodilla delantera.",
+            "Desciende hasta que el muslo delantero quede paralelo al suelo.",
+            "Empuja con la pierna delantera para volver arriba."
+        ],
+        tips: [
+            "Mantén el torso lo más vertical posible.",
+            "La rodilla delantera no debe pasar excesivamente la punta del pie.",
+            "Excelente para atletas que buscan fuerza funcional."
+        ]
+    },
+    {
+        id: "sumo-squat",
+        name: "Sentadilla Sumo",
+        category: "piernas",
+        difficulty: "principiante",
+        equipment: "Mancuerna o kettlebell",
+        emoji: "🏯",
+        image: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&h=400&fit=crop",
+        videoId: "TOZryI1I0tE",
+        description: "Variación de sentadilla con postura amplia que enfatiza los aductores y glúteos.",
+        muscles: ["Aductores", "Glúteos", "Cuádriceps", "Isquiotibiales"],
+        instructions: [
+            "Separa los pies más allá del ancho de los hombros con las puntas hacia afuera.",
+            "Sostén una mancuerna o kettlebell frente al cuerpo.",
+            "Baja en sentadilla manteniendo las rodillas en la dirección de los pies.",
+            "Desciende hasta que los muslos estén paralelos al suelo.",
+            "Sube apretando los glúteos y aductores."
+        ],
+        tips: [
+            "Las rodillas deben apuntar en la misma dirección que los pies.",
+            "Mantén el torso erguido, no te inclines hacia adelante.",
+            "Excelente para mejorar la flexibilidad de cadera."
+        ]
+    },
+
+    // ==================== NUEVOS - HOMBROS (Ampliación) ====================
+    {
+        id: "arnold-press",
+        name: "Press Arnold",
+        category: "hombros",
+        difficulty: "intermedio",
+        equipment: "Mancuernas",
+        emoji: "💪",
+        image: "https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600&h=400&fit=crop",
+        videoId: "T1swrKQeLKw",
+        description: "Variación del press de hombro inventada por Arnold Schwarzenegger que trabaja los tres cabezas del deltoides.",
+        muscles: ["Deltoides anterior", "Deltoides lateral", "Deltoides posterior", "Tríceps"],
+        instructions: [
+            "Siéntate con las mancuernas a la altura del pecho, palmas mirando hacia ti.",
+            "Mientras empujas las mancuernas hacia arriba, gira las palmas hacia afuera.",
+            "En la parte superior, las palmas deben mirar al frente.",
+            "Baja las mancuernas invirtiendo la rotación.",
+            "Las palmas terminan mirando hacia ti en la posición inicial."
+        ],
+        tips: [
+            "La rotación activa las tres cabezas del deltoides.",
+            "Usa menos peso que en el press militar convencional.",
+            "Movimiento fluido sin pausas bruscas."
+        ]
+    },
+    {
+        id: "front-raises",
+        name: "Elevación Frontal con Mancuernas",
+        category: "hombros",
+        difficulty: "principiante",
+        equipment: "Mancuernas",
+        emoji: "🙆",
+        image: "https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600&h=400&fit=crop",
+        videoId: "kLbvYQ-l4BA",
+        description: "Ejercicio de aislamiento para el deltoides anterior que define la parte frontal del hombro.",
+        muscles: ["Deltoides anterior", "Pectoral mayor (clavicular)"],
+        instructions: [
+            "De pie con una mancuerna en cada mano frente a los muslos.",
+            "Con los codos ligeramente flexionados, levanta los brazos al frente.",
+            "Sube hasta la altura de los hombros.",
+            "Mantén la posición un segundo arriba.",
+            "Baja de forma controlada a la posición inicial."
+        ],
+        tips: [
+            "No balancees el cuerpo para subir el peso.",
+            "Puedes alternar brazos o hacerlo simultáneo.",
+            "Usa un peso moderado para mantener la técnica."
+        ]
+    },
+
+    // ==================== NUEVOS - BRAZOS (Ampliación) ====================
+    {
+        id: "cable-curl",
+        name: "Curl en Polea Baja",
+        category: "brazos",
+        difficulty: "principiante",
+        equipment: "Máquina de polea baja",
+        emoji: "🔄",
+        image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&h=400&fit=crop",
+        videoId: "arAwWnfLyLw",
+        description: "Curl de bíceps con tensión constante durante todo el movimiento gracias al cable.",
+        muscles: ["Bíceps braquial", "Braquial", "Braquiorradial"],
+        instructions: [
+            "De pie frente a la polea baja, agarra la barra con agarre supino.",
+            "Mantén los codos pegados al cuerpo.",
+            "Flexiona los codos llevando la barra hacia los hombros.",
+            "Aprieta los bíceps en la contracción máxima.",
+            "Baja de forma controlada manteniendo la tensión."
+        ],
+        tips: [
+            "La polea mantiene tensión constante, a diferencia de las mancuernas.",
+            "No muevas los codos hacia adelante al subir.",
+            "Excelente para finalizar el entrenamiento de bíceps."
+        ]
+    },
+    {
+        id: "tricep-kickback",
+        name: "Patada de Tríceps (Kickback)",
+        category: "brazos",
+        difficulty: "principiante",
+        equipment: "Mancuerna",
+        emoji: "🦶",
+        image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&h=400&fit=crop",
+        videoId: "rOlw1qfy39U",
+        description: "Ejercicio de aislamiento que trabaja la cabeza lateral del tríceps con máxima contracción.",
+        muscles: ["Tríceps (cabeza lateral)", "Tríceps (cabeza medial)"],
+        instructions: [
+            "Inclínate hacia adelante con una mano y rodilla en el banco.",
+            "Sostén la mancuerna con el brazo a 90 grados.",
+            "Extiende el codo llevando la mancuerna hacia atrás.",
+            "Aprieta el tríceps en la extensión completa.",
+            "Baja de forma controlada a la posición inicial."
+        ],
+        tips: [
+            "Mantén el codo fijo pegado al cuerpo.",
+            "No uses impulso, el movimiento debe ser del antebrazo.",
+            "Usa un peso ligero para mantener la forma correcta."
+        ]
+    },
+
+    // ==================== NUEVOS - CORE (Ampliación) ====================
+    {
+        id: "dead-bug",
+        name: "Dead Bug",
+        category: "core",
+        difficulty: "principiante",
+        equipment: "Peso corporal",
+        emoji: "🐛",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
+        videoId: "HN3wyEcYC2g",
+        description: "Ejercicio fundamental para activar el core profundo y mejorar la estabilidad lumbar.",
+        muscles: ["Transverso del abdomen", "Recto abdominal", "Oblicuos", "Estabilizadores"],
+        instructions: [
+            "Acuéstate boca arriba con los brazos extendidos hacia el techo.",
+            "Eleva las piernas con rodillas a 90 grados (posición de mesa).",
+            "Extiende el brazo derecho atrás y la pierna izquierda al frente simultáneamente.",
+            "Mantén la espalda baja pegada al suelo en todo momento.",
+            "Regresa al centro y alterna con el otro lado."
+        ],
+        tips: [
+            "Si la espalda se despega del suelo, reduce el rango de movimiento.",
+            "Es un ejercicio de control, no de velocidad.",
+            "Perfecto para rehabilitación y prevención de lesiones."
+        ]
+    },
+    {
+        id: "cable-wood-chop",
+        name: "Leñador en Polea (Wood Chop)",
+        category: "core",
+        difficulty: "intermedio",
+        equipment: "Máquina de polea",
+        emoji: "🪓",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
+        videoId: "F5EuUIM_pwk",
+        description: "Ejercicio rotacional que trabaja los oblicuos y mejora la potencia de giro del tronco.",
+        muscles: ["Oblicuos", "Recto abdominal", "Transverso", "Hombros"],
+        instructions: [
+            "Coloca la polea en posición alta y agarra el mango con ambas manos.",
+            "Colócate de lado a la máquina con los pies separados.",
+            "Tira del cable en diagonal de arriba abajo cruzando el cuerpo.",
+            "Gira el torso durante el movimiento manteniendo los brazos extendidos.",
+            "Regresa de forma controlada a la posición inicial."
+        ],
+        tips: [
+            "El movimiento viene del core, no de los brazos.",
+            "Mantén las caderas lo más estables posible.",
+            "Puedes invertir la dirección (de abajo hacia arriba) para variar."
+        ]
+    },
+
+    // ==================== NUEVOS - CARDIO (Ampliación) ====================
+    {
+        id: "box-jumps",
+        name: "Saltos al Cajón (Box Jumps)",
+        category: "cardio",
+        difficulty: "intermedio",
+        equipment: "Cajón pliométrico",
+        emoji: "📦",
+        image: "https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=600&h=400&fit=crop",
+        videoId: "bbFEYR3i8JU",
+        description: "Ejercicio pliométrico que desarrolla potencia explosiva en las piernas y mejora la capacidad cardiovascular.",
+        muscles: ["Cuádriceps", "Glúteos", "Gemelos", "Core", "Sistema cardiovascular"],
+        instructions: [
+            "Colócate frente al cajón a una distancia de un paso.",
+            "Flexiona las rodillas y balancea los brazos hacia atrás.",
+            "Salta de forma explosiva aterrizando con ambos pies en el cajón.",
+            "Aterriza suavemente con las rodillas ligeramente flexionadas.",
+            "Baja del cajón con control y repite."
+        ],
+        tips: [
+            "Empieza con una altura baja e incrementa gradualmente.",
+            "Aterriza siempre con control, nunca con las piernas rígidas.",
+            "No te desplomes al bajar, controla cada repetición."
+        ]
+    },
+    {
+        id: "high-knees",
+        name: "Rodillas Altas (High Knees)",
+        category: "cardio",
+        difficulty: "principiante",
+        equipment: "Peso corporal",
+        emoji: "🏃",
+        image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&h=400&fit=crop",
+        videoId: "cr8umQg7oZ8",
+        description: "Ejercicio cardiovascular de alta intensidad que eleva la frecuencia cardíaca y trabaja el core.",
+        muscles: ["Flexores de cadera", "Cuádriceps", "Core", "Sistema cardiovascular"],
+        instructions: [
+            "De pie, comienza a correr en el lugar.",
+            "Levanta las rodillas lo más alto posible, al menos a la altura de la cadera.",
+            "Alterna las piernas rápidamente.",
+            "Mantén los brazos moviéndose de forma coordinada.",
+            "Mantén un ritmo constante y elevado."
+        ],
+        tips: [
+            "Aterriza sobre las puntas de los pies.",
+            "Mantén el core activado durante todo el ejercicio.",
+            "Ideal para calentamiento o circuitos HIIT."
+        ]
+    },
+    {
+        id: "kettlebell-swing",
+        name: "Kettlebell Swing",
+        category: "cardio",
+        difficulty: "intermedio",
+        equipment: "Kettlebell",
+        emoji: "🔔",
+        image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&h=400&fit=crop",
+        videoId: "JBeC5nkbZZE",
+        description: "Ejercicio completo que combina fuerza y cardio, trabajando la cadena posterior de forma explosiva.",
+        muscles: ["Glúteos", "Isquiotibiales", "Core", "Hombros", "Sistema cardiovascular"],
+        instructions: [
+            "De pie con los pies más anchos que los hombros, kettlebell en el suelo.",
+            "Agarra la kettlebell con ambas manos e inclínate desde la cadera.",
+            "Balancea la kettlebell entre las piernas y luego extiende las caderas explosivamente.",
+            "La kettlebell debe subir hasta la altura del pecho por la fuerza de las caderas.",
+            "Deja que la kettlebell caiga entre las piernas y repite."
+        ],
+        tips: [
+            "Es un movimiento de cadera, NO de hombros.",
+            "Aprieta los glúteos fuertemente en la parte superior.",
+            "Domina la bisagra de cadera antes de agregar peso."
+        ]
+    },
+    {
+        id: "battle-ropes",
+        name: "Cuerdas de Batalla (Battle Ropes)",
+        category: "cardio",
+        difficulty: "intermedio",
+        equipment: "Cuerdas de batalla",
+        emoji: "🪢",
+        image: "https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=600&h=400&fit=crop",
+        videoId: "OwGdMLettzQ",
+        description: "Ejercicio de cuerpo completo que eleva la frecuencia cardíaca mientras trabaja brazos, hombros y core.",
+        muscles: ["Hombros", "Brazos", "Core", "Piernas", "Sistema cardiovascular"],
+        instructions: [
+            "Agarra un extremo de la cuerda en cada mano.",
+            "Con las rodillas ligeramente flexionadas, crea ondas alternas con los brazos.",
+            "Mueve los brazos arriba y abajo de forma explosiva y alterna.",
+            "Mantén el core activado y la postura erguida.",
+            "Varía entre ondas alternas, dobles y en espiral."
+        ],
+        tips: [
+            "Genera las ondas desde los hombros, no solo las muñecas.",
+            "Mantén las rodillas flexionadas para estabilidad.",
+            "Empieza con intervalos de 20-30 segundos."
         ]
     }
 ];
