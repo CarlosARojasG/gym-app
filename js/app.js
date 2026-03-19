@@ -175,7 +175,39 @@
     // ===== DASHBOARD =====
     let dashboardChart = null;
 
+    function getGreeting() {
+        const hour = new Date().getHours();
+        if (hour < 12) return { text: "Buenos días", emoji: "☀️" };
+        if (hour < 19) return { text: "Buenas tardes", emoji: "🌤️" };
+        return { text: "Buenas noches", emoji: "🌙" };
+    }
+
     function renderDashboard() {
+        // Greeting
+        const greeting = getGreeting();
+        const name = getCurrentUser()?.split("_")[0] || "";
+        const displayName = $("#user-display-name")?.textContent || name;
+        const firstName = displayName.split(" ")[0];
+        const greetEl = $("#dashboard-greeting");
+        if (greetEl) {
+            greetEl.innerHTML = `<span class="greeting-emoji">${greeting.emoji}</span> ${greeting.text}, ${sanitize(firstName)}`;
+        }
+
+        // Motivational subtitle
+        const subEl = $("#dashboard-subtitle");
+        if (subEl) {
+            const streak = calculateStreak();
+            if (streak >= 7) {
+                subEl.textContent = `🔥 ¡Increíble! Llevas ${streak} días seguidos. ¡Sigue así!`;
+            } else if (streak >= 3) {
+                subEl.textContent = `💪 Llevas ${streak} días seguidos. ¡No pares!`;
+            } else if (STATE.workoutLog.length > 0) {
+                subEl.textContent = "Resumen de tu progreso";
+            } else {
+                subEl.textContent = "¡Empieza tu primer entrenamiento hoy!";
+            }
+        }
+
         // Stats with animated counters
         animateValue($("#stat-workouts"), STATE.workoutLog.length);
         animateValue($("#stat-routines"), STATE.routines.length);
@@ -191,6 +223,23 @@
             );
             $("#stat-weight").textContent = sorted[sorted.length - 1].value;
         }
+
+        // Total volume
+        const totalVolume = STATE.workoutLog.reduce((sum, w) =>
+            sum + w.exercises.reduce((exSum, ex) =>
+                exSum + ex.sets.reduce((sSum, s) =>
+                    sSum + (parseFloat(s.weight) || 0) * (parseInt(s.reps) || 0), 0), 0), 0);
+        const volumeEl = $("#stat-volume");
+        if (volumeEl) {
+            const displayVol = totalVolume >= 1000 ? Math.round(totalVolume / 1000) + "k" : Math.round(totalVolume);
+            volumeEl.textContent = displayVol;
+        }
+
+        // Total time
+        const totalSeconds = STATE.workoutLog.reduce((sum, w) => sum + (w.duration || 0), 0);
+        const totalHours = (totalSeconds / 3600).toFixed(1);
+        const timeEl = $("#stat-time");
+        if (timeEl) timeEl.textContent = totalHours;
 
         // Recent workouts
         const recentContainer = $("#recent-workouts");
@@ -344,12 +393,16 @@
         return "";
     }
 
-    function renderCatalog(filter = "all", search = "") {
+    function renderCatalog(filter = "all", search = "", difficulty = "all") {
         const grid = $("#exercise-grid");
         let exercises = EXERCISES_DB;
 
         if (filter !== "all") {
             exercises = exercises.filter((e) => e.category === filter);
+        }
+
+        if (difficulty !== "all") {
+            exercises = exercises.filter((e) => e.difficulty === difficulty);
         }
 
         if (search.trim()) {
@@ -410,6 +463,13 @@
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
+    function getActiveCatalogFilters() {
+        const filter = $(".filter-chips .chip.active")?.dataset.filter || "all";
+        const search = $("#search-exercises").value;
+        const difficulty = $(".difficulty-filters .chip-diff.active")?.dataset.difficulty || "all";
+        return { filter, search, difficulty };
+    }
+
     function initCatalogFilters() {
         updateChipCounts();
 
@@ -419,15 +479,40 @@
                     c.classList.remove("active")
                 );
                 chip.classList.add("active");
-                renderCatalog(chip.dataset.filter, $("#search-exercises").value);
+                const { search, difficulty } = getActiveCatalogFilters();
+                renderCatalog(chip.dataset.filter, search, difficulty);
             });
         });
 
-        $("#search-exercises").addEventListener("input", (e) => {
-            const activeFilter =
-                $(".filter-chips .chip.active")?.dataset.filter || "all";
-            renderCatalog(activeFilter, e.target.value);
+        $$(".difficulty-filters .chip-diff").forEach((chip) => {
+            chip.addEventListener("click", () => {
+                $$(".difficulty-filters .chip-diff").forEach((c) =>
+                    c.classList.remove("active")
+                );
+                chip.classList.add("active");
+                const { filter, search } = getActiveCatalogFilters();
+                renderCatalog(filter, search, chip.dataset.difficulty);
+            });
         });
+
+        const searchInput = $("#search-exercises");
+        const clearBtn = $("#btn-clear-search");
+
+        searchInput.addEventListener("input", (e) => {
+            const { filter, difficulty } = getActiveCatalogFilters();
+            renderCatalog(filter, e.target.value, difficulty);
+            if (clearBtn) clearBtn.style.display = e.target.value ? "block" : "none";
+        });
+
+        if (clearBtn) {
+            clearBtn.addEventListener("click", () => {
+                searchInput.value = "";
+                clearBtn.style.display = "none";
+                const { filter, difficulty } = getActiveCatalogFilters();
+                renderCatalog(filter, "", difficulty);
+                searchInput.focus();
+            });
+        }
     }
 
     function updateChipCounts() {
@@ -1893,6 +1978,48 @@
         }
     }
 
+    // ===== QUICK ACTIONS =====
+    function initQuickActions() {
+        $$(".quick-action-btn").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const action = btn.dataset.action;
+                switch (action) {
+                    case "start-workout":
+                        navigateTo("routines");
+                        break;
+                    case "log-weight":
+                        navigateTo("weight");
+                        break;
+                    case "new-routine":
+                        navigateTo("routines");
+                        setTimeout(() => $("#btn-new-routine")?.click(), 100);
+                        break;
+                    case "browse-catalog":
+                        navigateTo("catalog");
+                        break;
+                }
+            });
+        });
+    }
+
+    // ===== SCROLL TO TOP =====
+    function initScrollToTop() {
+        const btn = $("#btn-scroll-top");
+        if (!btn) return;
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                btn.classList.add("visible");
+            } else {
+                btn.classList.remove("visible");
+            }
+        });
+
+        btn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
+
     function enterApp(userInfo) {
         $("#auth-screen").style.display = "none";
         $("#app-container").style.display = "flex";
@@ -1923,6 +2050,8 @@
             initWeightForm();
             initExportImport();
             initBMIListeners();
+            initQuickActions();
+            initScrollToTop();
             appInitialized = true;
         }
 

@@ -1069,7 +1069,7 @@ const EXERCISES_DB = [
         equipment: "Máquina Peck Deck",
         emoji: "🦋",
         image: "https://images.unsplash.com/photo-1534368786749-b63e05c92717?w=600&h=400&fit=crop",
-        videoId: "g3T7LsEeDWQ",
+        videoId: "RbQ9L6KDADs",
         description: "Máquina de aislamiento que proporciona movimiento controlado y seguro para el pecho.",
         muscles: ["Pectoral mayor", "Deltoides anterior"],
         instructions: [
@@ -1269,7 +1269,7 @@ const EXERCISES_DB = [
         equipment: "Máquina de Elevación de Piernas",
         emoji: "📈",
         image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
-        videoId: "t8--Y-pjTmg",
+        videoId: "OMy3yMefd1g",
         description: "Ejercicio de máquina para fortalecer el core inferior y los abdominales bajos.",
         muscles: ["Recto abdominal", "Flexores de cadera", "Core"],
         instructions: [

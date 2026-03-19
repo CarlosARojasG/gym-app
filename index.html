@@ -135,36 +135,50 @@
         <!-- ==================== DASHBOARD ==================== -->
         <section id="page-dashboard" class="page active">
             <div class="page-header">
-                <h1>Dashboard</h1>
-                <p class="subtitle">Resumen de tu progreso</p>
+                <h1 id="dashboard-greeting">Dashboard</h1>
+                <p class="subtitle" id="dashboard-subtitle">Resumen de tu progreso</p>
             </div>
             <div class="stats-grid">
-                <div class="stat-card">
+                <div class="stat-card" data-stat="workouts">
                     <div class="stat-icon">🏋️</div>
                     <div class="stat-info">
                         <span class="stat-value" id="stat-workouts">0</span>
                         <span class="stat-label">Entrenamientos</span>
                     </div>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card" data-stat="routines">
                     <div class="stat-icon">📋</div>
                     <div class="stat-info">
                         <span class="stat-value" id="stat-routines">0</span>
                         <span class="stat-label">Rutinas</span>
                     </div>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card" data-stat="streak">
                     <div class="stat-icon">🔥</div>
                     <div class="stat-info">
                         <span class="stat-value" id="stat-streak">0</span>
                         <span class="stat-label">Días seguidos</span>
                     </div>
                 </div>
-                <div class="stat-card">
+                <div class="stat-card" data-stat="volume">
+                    <div class="stat-icon">💪</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="stat-volume">0</span>
+                        <span class="stat-label">Vol. total (kg)</span>
+                    </div>
+                </div>
+                <div class="stat-card" data-stat="weight">
                     <div class="stat-icon">⚖️</div>
                     <div class="stat-info">
                         <span class="stat-value" id="stat-weight">--</span>
                         <span class="stat-label">Peso actual (kg)</span>
+                    </div>
+                </div>
+                <div class="stat-card" data-stat="time">
+                    <div class="stat-icon">⏱️</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="stat-time">0</span>
+                        <span class="stat-label">Horas entrenadas</span>
                     </div>
                 </div>
             </div>
@@ -183,6 +197,28 @@
                     </div>
                 </div>
             </div>
+            
+            <div id="quick-actions" class="quick-actions">
+                <h3>⚡ Acciones Rápidas</h3>
+                <div class="quick-actions-grid">
+                    <button class="quick-action-btn" data-action="start-workout">
+                        <span class="quick-action-icon">🏋️</span>
+                        <span>Entrenar</span>
+                    </button>
+                    <button class="quick-action-btn" data-action="log-weight">
+                        <span class="quick-action-icon">⚖️</span>
+                        <span>Registrar Peso</span>
+                    </button>
+                    <button class="quick-action-btn" data-action="new-routine">
+                        <span class="quick-action-icon">📋</span>
+                        <span>Nueva Rutina</span>
+                    </button>
+                    <button class="quick-action-btn" data-action="browse-catalog">
+                        <span class="quick-action-icon">📚</span>
+                        <span>Catálogo</span>
+                    </button>
+                </div>
+            </div>
         </section>
 
         <!-- ==================== CATÁLOGO ==================== -->
@@ -193,7 +229,10 @@
             </div>
 
             <div class="catalog-filters">
-                <input type="text" id="search-exercises" class="search-input" placeholder="Buscar ejercicio...">
+                <div class="search-wrapper">
+                    <input type="text" id="search-exercises" class="search-input" placeholder="Buscar ejercicio...">
+                    <button type="button" id="btn-clear-search" class="btn-clear-search" style="display:none">&times;</button>
+                </div>
                 <div class="filter-chips">
                     <button class="chip active" data-filter="all">Todos</button>
                     <button class="chip" data-filter="pecho">Pecho</button>
@@ -203,6 +242,12 @@
                     <button class="chip" data-filter="brazos">Brazos</button>
                     <button class="chip" data-filter="core">Core</button>
                     <button class="chip" data-filter="cardio">Cardio</button>
+                </div>
+                <div class="filter-chips difficulty-filters">
+                    <button class="chip-diff active" data-difficulty="all">Todas</button>
+                    <button class="chip-diff" data-difficulty="principiante">🟢 Principiante</button>
+                    <button class="chip-diff" data-difficulty="intermedio">🟡 Intermedio</button>
+                    <button class="chip-diff" data-difficulty="avanzado">🔴 Avanzado</button>
                 </div>
             </div>
 
@@ -388,6 +433,9 @@
         </section>
 
     </main>
+
+    <!-- Scroll to top button -->
+    <button id="btn-scroll-top" class="btn-scroll-top" aria-label="Volver arriba">↑</button>
 
     <!-- Overlay for mobile sidebar -->
     <div id="sidebar-overlay" class="sidebar-overlay"></div>
