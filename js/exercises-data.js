@@ -2450,6 +2450,258 @@ const EXERCISES_DB = [
             "Mueve las extremidades opuestas al mismo tiempo.",
             "Empieza lento y aumenta la velocidad progresivamente."
         ]
+    },
+
+    // ==================== NUEVOS EJERCICIOS ====================
+
+    // --- PIERNAS ---
+    {
+        id: "wall-sit",
+        name: "Sentadilla en Pared (Wall Sit)",
+        category: "piernas",
+        difficulty: "principiante",
+        equipment: "Peso corporal",
+        emoji: "🧱",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
+        videoId: "E8mYVvKZ61E",
+        description: "Ejercicio isométrico que fortalece cuádriceps y glúteos manteniendo la posición de sentadilla contra una pared.",
+        muscles: ["Cuádriceps", "Glúteos", "Isquiotibiales", "Core"],
+        instructions: [
+            "Apoya la espalda completamente contra una pared lisa.",
+            "Deslízate hacia abajo hasta que tus muslos queden paralelos al suelo.",
+            "Mantén las rodillas a 90 grados sin que sobrepasen las puntas de los pies.",
+            "Los pies deben estar separados al ancho de las caderas.",
+            "Sostén la posición durante el tiempo indicado."
+        ],
+        tips: [
+            "Respira de forma constante; no contengas la respiración.",
+            "Si tus rodillas sobrepasan los dedos, aleja los pies de la pared.",
+            "Añade peso en las piernas para aumentar la dificultad."
+        ]
+    },
+    {
+        id: "pistol-squat",
+        name: "Sentadilla a Una Pierna (Pistol Squat)",
+        category: "piernas",
+        difficulty: "avanzado",
+        equipment: "Peso corporal",
+        emoji: "🔫",
+        image: "https://images.unsplash.com/photo-1534258936925-c58bed479fcb?w=600&h=400&fit=crop",
+        videoId: "qDcniqddTeE",
+        description: "Sentadilla unilateral completa que desafía la fuerza, equilibrio y movilidad de todo el tren inferior.",
+        muscles: ["Cuádriceps", "Glúteos", "Isquiotibiales", "Core", "Estabilizadores de tobillo"],
+        instructions: [
+            "Ponte de pie sobre una pierna con la otra extendida al frente.",
+            "Extiende los brazos al frente para mantener el equilibrio.",
+            "Desciende lentamente flexionando la rodilla de apoyo.",
+            "Baja lo más que puedas manteniendo el talón en el suelo.",
+            "Empuja con fuerza para volver a la posición inicial."
+        ],
+        tips: [
+            "Practica primero con una silla o TRX como apoyo.",
+            "Trabaja la movilidad de tobillo si no logras bajar completo.",
+            "Mantén el core activado durante todo el movimiento."
+        ]
+    },
+
+    // --- HOMBROS ---
+    {
+        id: "bradford-press",
+        name: "Press Bradford",
+        category: "hombros",
+        difficulty: "intermedio",
+        equipment: "Barra",
+        emoji: "🔄",
+        image: "https://images.unsplash.com/photo-1532029837206-abbe2b7620e3?w=600&h=400&fit=crop",
+        videoId: "jgm6XPx_9f8",
+        description: "Variación del press militar donde la barra alterna entre el frente y la nuca, manteniendo tensión constante en los deltoides.",
+        muscles: ["Deltoides anterior", "Deltoides lateral", "Tríceps", "Trapecio superior"],
+        instructions: [
+            "De pie o sentado, sostén la barra a la altura de los hombros por delante.",
+            "Eleva la barra justo por encima de la cabeza sin extender completamente los brazos.",
+            "Baja la barra detrás de la cabeza hasta la nuca.",
+            "Vuelve a elevar la barra por encima y bájala al frente.",
+            "Repite el ciclo de forma fluida y controlada."
+        ],
+        tips: [
+            "Usa un peso ligero; la tensión constante es intensa.",
+            "No extiendas los codos por completo en ningún momento.",
+            "Excelente como ejercicio de calentamiento de hombros."
+        ]
+    },
+    {
+        id: "band-pull-apart",
+        name: "Separación con Banda (Band Pull Apart)",
+        category: "hombros",
+        difficulty: "principiante",
+        equipment: "Banda elástica",
+        emoji: "🪢",
+        image: "https://images.unsplash.com/photo-1598289431512-b97b0917affc?w=600&h=400&fit=crop",
+        videoId: "lmvedD1PFD8",
+        description: "Ejercicio con banda elástica que fortalece los deltoides posteriores y mejora la postura al activar la musculatura de la espalda alta.",
+        muscles: ["Deltoides posterior", "Romboides", "Trapecio medio", "Infraespinoso"],
+        instructions: [
+            "Sostén una banda elástica con ambas manos al frente, brazos extendidos a la altura de los hombros.",
+            "Con la banda ya tensa en la posición inicial, separa las manos horizontalmente.",
+            "Lleva las manos hacia los lados apretando los omóplatos.",
+            "Mantén la contracción un instante al final del recorrido.",
+            "Regresa lentamente a la posición inicial con control."
+        ],
+        tips: [
+            "Mantén los codos ligeramente flexionados durante todo el movimiento.",
+            "Ideal para calentar antes de ejercicios de press.",
+            "Aumenta la resistencia usando una banda más gruesa."
+        ]
+    },
+
+    // --- BRAZOS ---
+    {
+        id: "dumbbell-tricep-kickback",
+        name: "Patada de Tríceps con Mancuerna",
+        category: "brazos",
+        difficulty: "principiante",
+        equipment: "Mancuernas",
+        emoji: "🦵",
+        image: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&h=400&fit=crop",
+        videoId: "6SS6K3lAwZ8",
+        description: "Ejercicio de aislamiento para tríceps que trabaja la extensión completa del codo con el torso inclinado.",
+        muscles: ["Tríceps (cabeza larga)", "Tríceps (cabeza lateral)", "Deltoides posterior"],
+        instructions: [
+            "Inclina el torso hacia adelante con la espalda recta.",
+            "Sostén una mancuerna con el codo pegado al cuerpo y flexionado a 90 grados.",
+            "Extiende el brazo hacia atrás hasta que quede completamente recto.",
+            "Aprieta el tríceps en la parte superior del movimiento.",
+            "Regresa lentamente a la posición inicial."
+        ],
+        tips: [
+            "No balancees el brazo; el movimiento es solo del antebrazo.",
+            "Mantén el codo fijo y pegado al torso.",
+            "Usa un peso que te permita extensión completa."
+        ]
+    },
+    {
+        id: "zottman-curl",
+        name: "Curl Zottman",
+        category: "brazos",
+        difficulty: "intermedio",
+        equipment: "Mancuernas",
+        emoji: "🔃",
+        image: "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600&h=400&fit=crop",
+        videoId: "FSGDM9-dZ9w",
+        description: "Variación del curl que combina agarre supino al subir y pronado al bajar, trabajando bíceps y antebrazos en un solo movimiento.",
+        muscles: ["Bíceps", "Braquiorradial", "Braquial", "Pronadores del antebrazo"],
+        instructions: [
+            "De pie, sostén una mancuerna en cada mano con agarre supino (palmas arriba).",
+            "Flexiona los codos elevando las mancuernas hacia los hombros.",
+            "En la parte superior, rota las muñecas hasta tener las palmas hacia abajo (agarre pronado).",
+            "Baja las mancuernas lentamente con las palmas hacia abajo.",
+            "En la parte inferior, rota de nuevo a agarre supino y repite."
+        ],
+        tips: [
+            "Controla la fase excéntrica (bajada) para maximizar el trabajo del antebrazo.",
+            "No uses impulso; mantén los codos pegados al cuerpo.",
+            "Empieza con un peso ligero para dominar la rotación."
+        ]
+    },
+
+    // --- CORE ---
+    {
+        id: "scissor-flutter-kicks",
+        name: "Patadas de Tijera",
+        category: "core",
+        difficulty: "principiante",
+        equipment: "Peso corporal",
+        emoji: "🦶",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
+        videoId: "ANVdMDaYRts",
+        description: "Ejercicio de core donde alternas pequeñas patadas con las piernas elevadas, activando el abdomen inferior de forma continua.",
+        muscles: ["Recto abdominal inferior", "Flexores de cadera", "Cuádriceps", "Oblicuos"],
+        instructions: [
+            "Acuéstate boca arriba con las manos debajo de los glúteos o a los lados.",
+            "Eleva ambas piernas unos 15 cm del suelo.",
+            "Alterna subiendo y bajando cada pierna en un movimiento de tijera.",
+            "Mantén las piernas rectas y el abdomen contraído.",
+            "Continúa el movimiento de forma rítmica durante el tiempo indicado."
+        ],
+        tips: [
+            "Presiona la espalda baja contra el suelo en todo momento.",
+            "Si sientes dolor lumbar, eleva más las piernas.",
+            "Respira de forma constante; no contengas el aire."
+        ]
+    },
+    {
+        id: "toe-touches",
+        name: "Toque de Puntas (Toe Touches)",
+        category: "core",
+        difficulty: "principiante",
+        equipment: "Peso corporal",
+        emoji: "👆",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
+        videoId: "rHEzFsLf4-o",
+        description: "Ejercicio abdominal donde elevas el torso para tocar las puntas de los pies con las piernas verticales, activando intensamente el recto abdominal.",
+        muscles: ["Recto abdominal", "Oblicuos", "Flexores de cadera"],
+        instructions: [
+            "Acuéstate boca arriba y eleva las piernas rectas hacia el techo.",
+            "Extiende los brazos hacia arriba apuntando a los pies.",
+            "Contrae el abdomen para elevar los hombros y la espalda alta del suelo.",
+            "Intenta tocar las puntas de los pies con las manos.",
+            "Baja lentamente a la posición inicial y repite."
+        ],
+        tips: [
+            "No tires del cuello; el movimiento viene del abdomen.",
+            "Mantén las piernas lo más verticales posible.",
+            "Exhala al subir e inhala al bajar."
+        ]
+    },
+
+    // --- CARDIO ---
+    {
+        id: "skater-jumps",
+        name: "Saltos de Patinador (Skater Jumps)",
+        category: "cardio",
+        difficulty: "intermedio",
+        equipment: "Peso corporal",
+        emoji: "⛸️",
+        image: "https://images.unsplash.com/photo-1534258936925-c58bed479fcb?w=600&h=400&fit=crop",
+        videoId: "udcgifnck9Y",
+        description: "Ejercicio pliométrico lateral que imita el movimiento de un patinador, mejorando potencia, agilidad y resistencia cardiovascular.",
+        muscles: ["Glúteos", "Cuádriceps", "Aductores", "Core", "Pantorrillas"],
+        instructions: [
+            "De pie, salta lateralmente hacia la derecha aterrizando sobre el pie derecho.",
+            "Lleva la pierna izquierda cruzada por detrás como un patinador.",
+            "Balancea los brazos en la dirección contraria al salto.",
+            "Inmediatamente salta hacia el lado izquierdo y repite.",
+            "Mantén un ritmo fluido y controlado en cada salto."
+        ],
+        tips: [
+            "Aterriza suavemente flexionando la rodilla para absorber el impacto.",
+            "Empieza con saltos cortos y aumenta la distancia progresivamente.",
+            "Mantén el core activado para estabilizar el tronco."
+        ]
+    },
+    {
+        id: "shadow-boxing",
+        name: "Boxeo de Sombra (Shadow Boxing)",
+        category: "cardio",
+        difficulty: "principiante",
+        equipment: "Peso corporal",
+        emoji: "🥊",
+        image: "https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=600&h=400&fit=crop",
+        videoId: "bk0PNntRgqw",
+        description: "Ejercicio cardiovascular que simula movimientos de boxeo sin contacto, mejorando coordinación, velocidad y resistencia.",
+        muscles: ["Deltoides", "Tríceps", "Core", "Cuádriceps", "Pantorrillas"],
+        instructions: [
+            "Adopta una postura de guardia con los pies escalonados y las manos arriba.",
+            "Lanza combinaciones de golpes: jab, cross, gancho y uppercut.",
+            "Muévete constantemente con pequeños pasos laterales y hacia adelante y atrás.",
+            "Incorpora esquivas y desplazamientos entre combinaciones.",
+            "Mantén un ritmo alto durante el tiempo indicado."
+        ],
+        tips: [
+            "Mantén las manos arriba en todo momento como en una guardia real.",
+            "Gira las caderas al lanzar golpes para generar más potencia.",
+            "Empieza lento para dominar la técnica antes de acelerar."
+        ]
     }
 ];
 
