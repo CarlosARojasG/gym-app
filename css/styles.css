@@ -61,6 +61,25 @@ body {
     transition: background var(--transition), color var(--transition);
 }
 
+/* Screen reader only utility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Dashboard greeting */
+.greeting-emoji {
+    font-size: 28px;
+    margin-right: 8px;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
@@ -975,6 +994,7 @@ body {
     border: 1px solid var(--border);
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .exercise-card:hover {
@@ -1062,6 +1082,7 @@ body {
     margin-bottom: 14px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     line-height: 1.6;
@@ -1494,6 +1515,19 @@ body {
     border: 1px solid var(--border);
     border-left: none;
     transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.log-entry::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--primary), var(--accent));
+    border-radius: 4px 0 0 4px;
 }
 
 .log-entry:hover {
@@ -1866,6 +1900,37 @@ body {
     .log-filters span {
         text-align: center;
     }
+
+    .summary-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .rest-timer-bar {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .bmi-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .height-input-section {
+        flex-direction: column;
+    }
+
+    .quick-actions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .btn-scroll-top {
+        bottom: 70px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1905,6 +1970,18 @@ body {
 
     .auth-logo-icon {
         font-size: 44px;
+    }
+
+    .summary-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .quick-actions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .btn-scroll-top {
+        bottom: 70px;
     }
 }
 
@@ -2369,31 +2446,6 @@ body {
     pointer-events: none;
 }
 
-/* ===== RESPONSIVE ADDITIONS ===== */
-@media (max-width: 768px) {
-    .summary-stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .rest-timer-bar {
-        flex-wrap: wrap;
-        justify-content: center;
-        text-align: center;
-    }
-    .bmi-card {
-        flex-direction: column;
-        text-align: center;
-    }
-    .height-input-section {
-        flex-direction: column;
-    }
-}
-
-@media (max-width: 480px) {
-    .summary-stats-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
 /* ===== QUICK ACTIONS ===== */
 .quick-actions {
     margin-top: 8px;
@@ -2438,15 +2490,6 @@ body {
 
 .quick-action-icon {
     font-size: 28px;
-}
-
-@media (max-width: 480px) {
-    .quick-actions-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .btn-scroll-top {
-        bottom: 70px;
-    }
 }
 
 /* ===== SEARCH WRAPPER ===== */
@@ -2570,11 +2613,6 @@ body {
 }
 
 /* ===== EXERCISE CARD IMPROVEMENTS ===== */
-.exercise-card {
-    position: relative;
-    overflow: hidden;
-}
-
 .exercise-card::after {
     content: '';
     position: absolute;
@@ -2590,44 +2628,4 @@ body {
 
 .exercise-card:hover::after {
     transform: scaleX(1);
-}
-
-/* ===== PAGE TRANSITIONS ===== */
-/* Page animation handled by .page.active fadeIn above */
-
-/* ===== LOG ENTRY IMPROVEMENTS ===== */
-.log-entry {
-    position: relative;
-    overflow: hidden;
-}
-
-.log-entry::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(180deg, var(--primary), var(--accent));
-    border-radius: 4px 0 0 4px;
-}
-
-/* ===== DASHBOARD GREETING ===== */
-.greeting-emoji {
-    font-size: 28px;
-    margin-right: 8px;
-}
-
-/* ===== RESPONSIVE ADDITIONS ===== */
-@media (max-width: 768px) {
-    .quick-actions-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .btn-scroll-top {
-        bottom: 70px;
-        right: 16px;
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
-    }
 }

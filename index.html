@@ -314,6 +314,7 @@
             <div class="modal-content">
                 <button class="modal-close" id="close-picker-modal" aria-label="Cerrar">&times;</button>
                 <h2>Seleccionar Ejercicio</h2>
+                <label for="picker-search" class="sr-only">Buscar ejercicio</label>
                 <input type="text" id="picker-search" class="search-input" placeholder="Buscar ejercicio...">
                 <div id="picker-list" class="picker-list">
                     <!-- Rendered by JS -->
@@ -339,9 +340,11 @@
             </div>
 
             <div class="log-filters">
-                <input type="date" id="log-date-from" class="date-input">
+                <label for="log-date-from" class="sr-only">Fecha desde</label>
+                <input type="date" id="log-date-from" class="date-input" aria-label="Fecha desde">
                 <span>a</span>
-                <input type="date" id="log-date-to" class="date-input">
+                <label for="log-date-to" class="sr-only">Fecha hasta</label>
+                <input type="date" id="log-date-to" class="date-input" aria-label="Fecha hasta">
                 <button id="btn-filter-log" class="btn-secondary">Filtrar</button>
             </div>
 

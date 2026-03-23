@@ -1243,7 +1243,7 @@
                     name: ex ? ex.name : "Ejercicio desconocido",
                     sets: we.sets.filter((s) => s.completed),
                 };
-            }),
+            }).filter((ex) => ex.sets.length > 0),
         };
 
         STATE.workoutLog.push(logEntry);
@@ -1434,6 +1434,11 @@
 
     function initLogFilters() {
         $("#btn-filter-log").addEventListener("click", () => renderLog());
+        ["#log-date-from", "#log-date-to"].forEach((sel) => {
+            $(sel).addEventListener("keydown", (e) => {
+                if (e.key === "Enter") renderLog();
+            });
+        });
     }
 
     // ===== WEIGHT TRACKING =====
@@ -2116,6 +2121,8 @@
             clearInterval(STATE.workoutTimerInterval);
         }
         skipRestTimer();
+        if (dashboardChart) { dashboardChart.destroy(); dashboardChart = null; }
+        if (weightChart) { weightChart.destroy(); weightChart = null; }
         clearCurrentUser();
         $("#app-container").style.display = "none";
         $("#auth-screen").style.display = "flex";
